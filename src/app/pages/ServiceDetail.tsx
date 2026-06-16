@@ -28,7 +28,7 @@ export default function ServiceDetail() {
         <img src={service.hero} alt={service.name} className="absolute inset-0 w-full h-full object-cover" style={{ filter: "brightness(0.4) saturate(1.1)" }} />
         <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(52,78,65,0.2) 0%, rgba(52,78,65,0.7) 100%)" }} />
 
-        <button onClick={() => navigate("/services")} className="absolute top-28 left-6 z-10 flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white transition-colors">
+        <button onClick={() => navigate("/services")} className="absolute top-28 left-6 z-20 flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white transition-colors">
           <ArrowLeft size={16} /> Quay lại Dịch vụ
         </button>
 
@@ -38,7 +38,6 @@ export default function ServiceDetail() {
             <span className="text-xs tracking-widest uppercase font-medium" style={{ color: C.champagne, letterSpacing: "0.2em" }}>{service.category}</span>
             <span className="h-px w-8" style={{ background: C.champagne, opacity: 0.7 }} />
           </div>
-          <div className="text-5xl mb-3" style={{ opacity: 0, animation: "fadeUp 0.9s ease 0.2s forwards" }}>{service.emoji}</div>
           <h1 className="font-semibold text-white mb-4" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", lineHeight: 1.1, opacity: 0, animation: "fadeUp 0.9s ease 0.3s forwards" }}>
             {service.name}
           </h1>
@@ -48,116 +47,102 @@ export default function ServiceDetail() {
 
       {/* ── MAIN CONTENT */}
       <section className="py-20 px-6">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-3 gap-10">
+        <div className="max-w-6xl mx-auto">
 
-          {/* Left: full desc + includes */}
-          <div className="lg:col-span-2">
-            <FadeUp>
-              <div className="text-xs tracking-widest uppercase mb-3 flex items-center gap-2" style={{ color: C.sageMain }}>
-                <Leaf size={11} color={C.sageMain} /> HBT Studio
-              </div>
-              <h2 className="font-semibold mb-2" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.6rem, 3vw, 2.2rem)", color: C.forest }}>
-                {service.name}
-              </h2>
-              <BranchDivider />
-              <p className="mt-5 leading-relaxed text-base" style={{ color: C.forestMid }}>{service.fullDesc}</p>
-            </FadeUp>
+          {/* Header Info (Title + Desc) spanning full width */}
+          <FadeUp>
+            <div className="text-xs tracking-widest uppercase mb-3 flex items-center gap-2" style={{ color: C.sageMain }}>
+              <Leaf size={11} color={C.sageMain} /> HBT Studio
+            </div>
+            <h2 className="font-semibold mb-2" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.6rem, 3vw, 2.2rem)", color: C.forest }}>
+              {service.name}
+            </h2>
+            <BranchDivider />
+            <p className="mt-5 leading-relaxed text-base max-w-3xl" style={{ color: C.forestMid }}>{service.fullDesc}</p>
+          </FadeUp>
 
-            {/* featured image if available */}
-            {service.detailImg && (
-              <FadeUp delay={0.12}>
-                <div className="mt-10 relative overflow-hidden rounded-2xl" style={{ height: 380 }}>
-                  <img
-                    src={service.detailImg}
-                    alt={service.name}
-                    className="w-full h-full object-cover"
-                  />
-                  <div
-                    className="absolute inset-0"
-                    style={{ background: "linear-gradient(to top, rgba(52,78,65,0.45) 0%, transparent 60%)" }}
-                  />
-                  <div className="absolute bottom-5 left-6">
-                    <span
-                      className="text-xs tracking-widest uppercase font-medium px-3 py-1.5 rounded-full"
-                      style={{ background: "rgba(255,255,255,0.15)", backdropFilter: "blur(10px)", color: C.white, border: "1px solid rgba(255,255,255,0.25)" }}
-                    >
-                      HBT Studio · {service.name}
-                    </span>
-                  </div>
-                </div>
-              </FadeUp>
-            )}
+          {/* Merged Image & Info Card (Non-sticky, Single block) */}
+          <FadeUp delay={0.12}>
+            <div className="mt-10 rounded-[2rem] overflow-hidden border flex flex-col lg:flex-row" style={{ borderColor: C.sageLight, minHeight: 440 }}>
 
-            {/* includes */}
-            <FadeUp delay={0.15}>
-              <div className="mt-10">
-                <h3 className="font-semibold mb-5 text-base" style={{ fontFamily: "'Playfair Display', serif", color: C.forest }}>
-                  Bao gồm trong gói
-                </h3>
-                <div className="grid sm:grid-cols-2 gap-3">
-                  {service.includes.map((item, i) => (
-                    <div key={i} className="flex items-start gap-3 p-4 rounded-xl" style={{ background: C.sageLight }}>
-                      <CheckCircle size={16} color={C.forestMid} className="mt-0.5 shrink-0" />
-                      <span className="text-sm leading-relaxed" style={{ color: C.forest }}>{item}</span>
-                    </div>
-                  ))}
+              {/* Left: Image */}
+              <div className="lg:w-[65%] relative" style={{ minHeight: 300 }}>
+                <img
+                  src={service.detailImg || service.img || service.hero}
+                  alt={service.name}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{ background: "linear-gradient(to top, rgba(52,78,65,0.45) 0%, transparent 60%)" }}
+                />
+                <div className="absolute bottom-6 left-8">
+                  <span
+                    className="text-xs tracking-widest uppercase font-medium px-4 py-2 rounded-full"
+                    style={{ background: "rgba(255,255,255,0.15)", backdropFilter: "blur(10px)", color: C.white, border: "1px solid rgba(255,255,255,0.25)" }}
+                  >
+                    HBT Studio · {service.name}
+                  </span>
                 </div>
               </div>
-            </FadeUp>
-          </div>
 
-          {/* Right: info card + CTA */}
-          <FadeUp delay={0.1}>
-            <div className="lg:sticky lg:top-28">
-              <div className="rounded-2xl overflow-hidden border" style={{ borderColor: C.sageLight }}>
-                {/* detail image if available */}
-                {service.detailImg && (
-                  <div className="relative overflow-hidden" style={{ height: 200 }}>
-                    <img
-                      src={service.detailImg}
-                      alt={service.name}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 50%, rgba(52,78,65,0.6) 100%)" }} />
-                  </div>
-                )}
+              {/* Right: Info Card */}
+              <div className="lg:w-[35%] flex flex-col border-t lg:border-t-0 lg:border-l" style={{ borderColor: C.sageLight }}>
                 {/* price header */}
-                <div className="p-6 text-center" style={{ background: C.forest }}>
+                <div className="px-6 py-8 text-center" style={{ background: C.forest }}>
                   <div className="text-3xl font-bold" style={{ fontFamily: "'Playfair Display', serif", color: C.champagne }}>{service.price}</div>
-                  <div className="text-xs mt-1 tracking-wide" style={{ color: C.sageMain }}>Giá tham khảo</div>
+                  <div className="text-xs mt-1.5 tracking-wide" style={{ color: C.sageMain }}>Giá tham khảo</div>
                 </div>
                 {/* details */}
-                <div className="p-6 space-y-4" style={{ background: C.white }}>
-                  <div className="flex items-center gap-3 pb-4 border-b" style={{ borderColor: C.sageLight }}>
-                    <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style={{ background: C.sageLight }}>
-                      <Clock size={15} color={C.forestMid} />
+                <div className="px-8 py-10 space-y-6 flex-grow" style={{ background: C.white }}>
+                  <div className="flex items-center gap-4 pb-5 border-b" style={{ borderColor: C.sageLight }}>
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{ background: C.sageLight }}>
+                      <Clock size={16} color={C.forestMid} />
                     </div>
                     <div>
-                      <div className="text-xs uppercase tracking-wide mb-0.5" style={{ color: C.sageMain }}>Thời lượng</div>
+                      <div className="text-xs uppercase tracking-wide mb-1" style={{ color: C.sageMain }}>Thời lượng</div>
                       <div className="text-sm font-semibold" style={{ color: C.forest }}>{service.duration}</div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style={{ background: C.sageLight }}>
-                      <Tag size={15} color={C.forestMid} />
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{ background: C.sageLight }}>
+                      <Tag size={16} color={C.forestMid} />
                     </div>
                     <div>
-                      <div className="text-xs uppercase tracking-wide mb-0.5" style={{ color: C.sageMain }}>Danh mục</div>
+                      <div className="text-xs uppercase tracking-wide mb-1" style={{ color: C.sageMain }}>Danh mục</div>
                       <div className="text-sm font-semibold" style={{ color: C.forest }}>{service.category}</div>
                     </div>
                   </div>
                 </div>
                 {/* CTA */}
-                <div className="p-5" style={{ background: C.bg }}>
+                <div className="p-6 border-t" style={{ borderColor: C.sageLight, background: C.bg }}>
                   <button
                     onClick={() => navigate("/contact")}
-                    className="group w-full flex items-center justify-center gap-2 py-3.5 rounded-full font-semibold text-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+                    className="group w-full flex items-center justify-center gap-2 py-4 rounded-full font-semibold text-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
                     style={{ background: C.peach, color: C.white, boxShadow: `0 6px 20px rgba(244,162,97,0.35)` }}
                   >
-                    Đặt lịch ngay <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+                    Đặt lịch ngay <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </button>
                   <p className="text-center text-xs mt-3" style={{ color: C.sageMain }}>Tư vấn miễn phí · Không cam kết</p>
                 </div>
+              </div>
+
+            </div>
+          </FadeUp>
+
+          {/* Includes */}
+          <FadeUp delay={0.15}>
+            <div className="mt-12">
+              <h3 className="font-semibold mb-6 text-lg" style={{ fontFamily: "'Playfair Display', serif", color: C.forest }}>
+                Bao gồm trong gói
+              </h3>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {service.includes.map((item, i) => (
+                  <div key={i} className="flex items-start gap-3 p-4 rounded-xl" style={{ background: C.sageLight }}>
+                    <CheckCircle size={18} color={C.forestMid} className="mt-0.5 shrink-0" />
+                    <span className="text-sm leading-relaxed" style={{ color: C.forest }}>{item}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </FadeUp>

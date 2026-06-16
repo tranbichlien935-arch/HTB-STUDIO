@@ -4,7 +4,7 @@ import hoangHonImg from "@/imports/image-21.png";
 import hoangHonRingImg from "@/imports/image-22.png";
 import hoaXinhImg from "@/imports/image-23.png";
 import marryMeImg from "@/imports/image-24.png";
-import khaiTruongSvg from "@/imports/khai-truong.svg";
+import khaiTruongImg from "@/imports/khai-truong.jpg";
 import cotMocImg from "@/imports/image-26.png";
 import cotMoc2Img from "@/imports/image-27.png";
 
@@ -58,7 +58,7 @@ export const SERVICES: ServiceDetail[] = [
     slug: "quay-phong-su",
     name: "Quay Phóng Sự", price: "5.000.000đ", emoji: "🎬",
     desc: "Quay và dựng video highlight sự kiện, cưới hỏi.",
-    img: "", hero: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1400&h=600&fit=crop&auto=format",
+    img: "https://images.pexels.com/photos/36606619/pexels-photo-36606619.jpeg", hero: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1400&h=600&fit=crop&auto=format",
     duration: "Cả ngày", category: "Quay Phim",
     fullDesc: "Dịch vụ quay phóng sự của HBT Studio ghi lại trọn vẹn không khí của ngày cưới từ sáng đến tối. Video highlight được dựng chuyên nghiệp, phối nhạc tinh tế, trở thành kỷ niệm đáng trân trọng cho cả gia đình.",
     includes: ["Quay full ngày sự kiện", "Video highlight 5–7 phút", "Dựng phim chuyên nghiệp có nhạc nền", "Xuất file Full HD, giao trong 14 ngày"],
@@ -72,112 +72,112 @@ export const SERVICES: ServiceDetail[] = [
     slug: "cho-thue-studio",
     name: "Cho Thuê Studio", price: "500.000đ", emoji: "🌿",
     desc: "Thuê studio đầy đủ ánh sáng, phông nền theo giờ.",
-    img: "", hero: "https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=1400&h=600&fit=crop&auto=format",
-    duration: "1 giờ/lần", category: "Studio",
+    img: "https://images.pexels.com/photos/11901222/pexels-photo-11901222.jpeg", hero: "https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=1400&h=600&fit=crop&auto=format",
+    duration: "1 giờ", category: "Thuê Studio & Thiết Bị",
     fullDesc: "Studio HBT được trang bị đầy đủ hệ thống đèn studio chuyên nghiệp, đa dạng phông nền và props. Không gian thoáng đãng, phù hợp cho chụp cá nhân, nhóm, sản phẩm hay thương hiệu cá nhân.",
     includes: ["Không gian studio 40m²", "Hệ thống đèn studio đầy đủ", "Nhiều lựa chọn phông nền", "Props & phụ kiện hỗ trợ"],
     process: [
-      { no: "01", title: "Đặt lịch trước", desc: "Chọn ngày giờ và phông nền phù hợp với concept." },
-      { no: "02", title: "Check-in & setup", desc: "Ekip hỗ trợ setup đèn, phông theo yêu cầu trước buổi chụp." },
-      { no: "03", title: "Tự do sáng tạo", desc: "Tận hưởng không gian và thỏa sức thể hiện phong cách riêng." },
+      { no: "01", title: "Tư vấn concept", desc: "Trao đổi nhu cầu, phong cách và ý tưởng phù hợp với khách hàng." },
+      { no: "02", title: "Chuẩn bị buổi chụp", desc: "Sắp xếp thời gian, địa điểm, trang phục và các chi tiết cần thiết." },
+      { no: "03", title: "Chụp và chỉnh ảnh", desc: "Thực hiện buổi chụp, chọn ảnh và chỉnh sửa theo phong cách đã thống nhất." },
     ],
   },
   {
     slug: "chup-anh-doanh-nghiep",
     name: "Chụp Ảnh Doanh Nghiệp", price: "2.000.000đ", emoji: "💼",
     desc: "Chụp profile công ty, nhân sự, sự kiện doanh nghiệp.",
-    img: "", hero: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1400&h=600&fit=crop&auto=format",
-    duration: "2 giờ", category: "Doanh Nghiệp",
+    img: "https://images.pexels.com/photos/21044856/pexels-photo-21044856.jpeg", hero: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1400&h=600&fit=crop&auto=format",
+    duration: "1 giờ", category: "Chụp Ảnh",
     fullDesc: "Bộ ảnh doanh nghiệp chuyên nghiệp giúp thương hiệu của bạn tạo ấn tượng mạnh với khách hàng và đối tác. HBT Studio cung cấp dịch vụ chụp ảnh profile, headshot nhân sự và phóng sự sự kiện công ty.",
     includes: ["50 ảnh chỉnh sửa chất lượng cao", "Chụp tại studio hoặc văn phòng", "Tư vấn phong cách & trang phục", "Giao ảnh trong 7 ngày"],
     process: [
-      { no: "01", title: "Briefing thương hiệu", desc: "Tìm hiểu phong cách, màu sắc và thông điệp thương hiệu." },
-      { no: "02", title: "Chụp tại địa điểm", desc: "Di chuyển đến văn phòng hoặc studio để thực hiện buổi chụp." },
-      { no: "03", title: "Chỉnh sửa & bàn giao", desc: "Chỉnh màu đồng bộ, retouch và giao file theo định dạng yêu cầu." },
+      { no: "01", title: "Tư vấn concept", desc: "Trao đổi nhu cầu, phong cách và ý tưởng phù hợp với khách hàng." },
+      { no: "02", title: "Chuẩn bị buổi chụp", desc: "Sắp xếp thời gian, địa điểm, trang phục và các chi tiết cần thiết." },
+      { no: "03", title: "Chụp và chỉnh ảnh", desc: "Thực hiện buổi chụp, chọn ảnh và chỉnh sửa theo phong cách đã thống nhất." },
     ],
   },
   {
     slug: "chup-anh-san-pham",
     name: "Chụp Ảnh Sản Phẩm", price: "2.500.000đ", emoji: "📸",
     desc: "Chụp sản phẩm thương mại điện tử, menu, quảng cáo.",
-    img: "", hero: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1400&h=600&fit=crop&auto=format",
-    duration: "2–3 giờ", category: "Sản Phẩm",
+    img: "https://images.pexels.com/photos/14149690/pexels-photo-14149690.jpeg", hero: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1400&h=600&fit=crop&auto=format",
+    duration: "1 giờ", category: "Chụp Ảnh",
     fullDesc: "Ảnh sản phẩm đẹp là chìa khóa tăng doanh số. HBT Studio chụp ảnh sản phẩm với ánh sáng chuẩn, bố cục đẹp mắt phù hợp cho Shopee, website, menu nhà hàng và quảng cáo mạng xã hội.",
     includes: ["20 ảnh/sản phẩm chỉnh sửa hoàn chỉnh", "Nền trắng và nền cảnh (lifestyle)", "Tư vấn sắp xếp & props", "File xuất nhiều kích thước"],
     process: [
-      { no: "01", title: "Nhận sản phẩm & lên kế hoạch", desc: "Xem xét sản phẩm, thống nhất phong cách và bố cục chụp." },
-      { no: "02", title: "Setup & chụp", desc: "Sắp xếp props, ánh sáng và thực hiện chụp theo từng góc." },
-      { no: "03", title: "Chỉnh sửa & giao file", desc: "Retouch màu sắc, loại bỏ khuyết điểm và giao ảnh đúng hạn." },
+      { no: "01", title: "Tư vấn concept", desc: "Trao đổi nhu cầu, phong cách và ý tưởng phù hợp với khách hàng." },
+      { no: "02", title: "Chuẩn bị buổi chụp", desc: "Sắp xếp thời gian, địa điểm, trang phục và các chi tiết cần thiết." },
+      { no: "03", title: "Chụp và chỉnh ảnh", desc: "Thực hiện buổi chụp, chọn ảnh và chỉnh sửa theo phong cách đã thống nhất." },
     ],
   },
   {
     slug: "make-up",
     name: "Make Up", price: "800.000đ", emoji: "✨",
     desc: "Trang điểm chuyên nghiệp cho buổi chụp ảnh.",
-    img: "", hero: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1400&h=600&fit=crop&auto=format",
-    duration: "45–60 phút", category: "Làm Đẹp",
+    img: "https://images.pexels.com/photos/18378798/pexels-photo-18378798.jpeg", hero: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1400&h=600&fit=crop&auto=format",
+    duration: "1 giờ", category: "Trang Điểm & Trang Phục",
     fullDesc: "Đội ngũ make up artist của HBT Studio được đào tạo bài bản, am hiểu ánh sáng studio để tạo lớp trang điểm hoàn hảo trước ống kính. Phong cách đa dạng từ tự nhiên, nhẹ nhàng đến ấn tượng theo yêu cầu.",
     includes: ["Trang điểm mặt hoàn chỉnh", "Tư vấn phong cách phù hợp", "Dụng cụ & mỹ phẩm cao cấp", "Chỉnh sửa trong suốt buổi chụp"],
     process: [
-      { no: "01", title: "Tư vấn phong cách", desc: "Trao đổi về concept, trang phục để chọn kiểu make up phù hợp." },
-      { no: "02", title: "Trang điểm", desc: "Thực hiện make up tỉ mỉ, đảm bảo đẹp tự nhiên trước ống kính." },
-      { no: "03", title: "Hỗ trợ xuyên suốt", desc: "Touch up và chỉnh sửa liên tục trong quá trình chụp ảnh." },
+      { no: "01", title: "Tư vấn concept", desc: "Trao đổi nhu cầu, phong cách và ý tưởng phù hợp với khách hàng." },
+      { no: "02", title: "Chuẩn bị buổi chụp", desc: "Sắp xếp thời gian, địa điểm, trang phục và các chi tiết cần thiết." },
+      { no: "03", title: "Chụp và chỉnh ảnh", desc: "Thực hiện buổi chụp, chọn ảnh và chỉnh sửa theo phong cách đã thống nhất." },
     ],
   },
   {
     slug: "cho-thue-trang-phuc",
     name: "Cho Thuê Trang Phục", price: "200.000đ", emoji: "👗",
     desc: "Thuê váy cưới, vest hoặc trang phục concept.",
-    img: "", hero: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1400&h=600&fit=crop&auto=format",
-    duration: "Theo buổi chụp", category: "Trang Phục",
+    img: "https://images.pexels.com/photos/35304403/pexels-photo-35304403.jpeg", hero: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1400&h=600&fit=crop&auto=format",
+    duration: "1 giờ", category: "Trang Điểm & Trang Phục",
     fullDesc: "Kho trang phục đa dạng của HBT Studio gồm váy cưới, áo dài, vest, trang phục concept Hàn Quốc, vintage và nhiều phong cách khác. Phù hợp cho mọi loại buổi chụp từ cá nhân đến nhóm.",
     includes: ["Váy cưới, áo dài, vest đa dạng", "Phụ kiện đi kèm (khăn, vương miện...)", "Hỗ trợ mặc trang phục", "Thay trang phục không giới hạn trong buổi chụp"],
     process: [
-      { no: "01", title: "Chọn trang phục", desc: "Xem kho và chọn trang phục phù hợp với concept trước ngày chụp." },
-      { no: "02", title: "Thử & điều chỉnh", desc: "Thử trang phục trước buổi chụp, điều chỉnh size nếu cần." },
-      { no: "03", title: "Sử dụng & hoàn trả", desc: "Mặc thoải mái trong buổi chụp và hoàn trả sau khi kết thúc." },
+      { no: "01", title: "Tư vấn concept", desc: "Trao đổi nhu cầu, phong cách và ý tưởng phù hợp với khách hàng." },
+      { no: "02", title: "Chuẩn bị buổi chụp", desc: "Sắp xếp thời gian, địa điểm, trang phục và các chi tiết cần thiết." },
+      { no: "03", title: "Chụp và chỉnh ảnh", desc: "Thực hiện buổi chụp, chọn ảnh và chỉnh sửa theo phong cách đã thống nhất." },
     ],
   },
   {
     slug: "flycam",
     name: "Flycam", price: "1.500.000đ", emoji: "🚁",
     desc: "Quay flycam bổ sung cho bộ ảnh hoặc video.",
-    img: "", hero: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=1400&h=600&fit=crop&auto=format",
-    duration: "30 phút bay", category: "Flycam",
+    img: "https://images.pexels.com/photos/20738492/pexels-photo-20738492.jpeg", hero: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=1400&h=600&fit=crop&auto=format",
+    duration: "1 giờ", category: "Quay Phim",
     fullDesc: "Góc nhìn từ trên cao tạo nên những khung hình ấn tượng và độc đáo cho bộ ảnh hay video của bạn. HBT Studio sử dụng flycam chuyên nghiệp, pilot có kinh nghiệm, đảm bảo an toàn tuyệt đối.",
     includes: ["30 phút bay flycam", "Ảnh/video từ góc nhìn máy bay", "Pilot chuyên nghiệp có giấy phép", "Kết hợp được với mọi gói dịch vụ"],
     process: [
-      { no: "01", title: "Khảo sát địa điểm", desc: "Đánh giá không gian bay, kiểm tra quy định và thời tiết." },
-      { no: "02", title: "Bay & ghi hình", desc: "Thực hiện các cảnh quay theo kế hoạch đã thống nhất." },
-      { no: "03", title: "Xuất footage", desc: "Giao file raw hoặc dựng ghép vào video chính theo yêu cầu." },
+      { no: "01", title: "Tư vấn concept", desc: "Trao đổi nhu cầu, phong cách và ý tưởng phù hợp với khách hàng." },
+      { no: "02", title: "Chuẩn bị buổi chụp", desc: "Sắp xếp thời gian, địa điểm, trang phục và các chi tiết cần thiết." },
+      { no: "03", title: "Chụp và chỉnh ảnh", desc: "Thực hiện buổi chụp, chọn ảnh và chỉnh sửa theo phong cách đã thống nhất." },
     ],
   },
   {
     slug: "in-anh",
     name: "In Ảnh", price: "20.000đ", emoji: "🖼️",
     desc: "In ảnh chất lượng cao theo kích thước yêu cầu.",
-    img: "", hero: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&h=600&fit=crop&auto=format",
-    duration: "1–3 ngày", category: "In Ấn",
+    img: "https://images.pexels.com/photos/29245008/pexels-photo-29245008.jpeg", hero: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&h=600&fit=crop&auto=format",
+    duration: "1 giờ", category: "Hậu Kỳ & In Ấn",
     fullDesc: "Dịch vụ in ảnh của HBT Studio sử dụng máy in chuyên nghiệp với mực in cao cấp, giấy ảnh bền màu theo thời gian. Hỗ trợ đa dạng kích thước từ 10×15 đến poster khổ lớn.",
     includes: ["In trên giấy ảnh cao cấp", "Màu sắc trung thực, bền lâu", "Đa dạng kích thước theo yêu cầu", "Đóng gói cẩn thận trước khi giao"],
     process: [
-      { no: "01", title: "Gửi file ảnh", desc: "Gửi file ảnh đã chỉnh sửa, xác nhận kích thước và số lượng." },
-      { no: "02", title: "In & kiểm tra", desc: "Thực hiện in, kiểm tra màu sắc và chất lượng từng tấm." },
-      { no: "03", title: "Đóng gói & giao", desc: "Đóng gói bảo vệ, giao tận nơi hoặc nhận tại studio." },
+      { no: "01", title: "Tư vấn concept", desc: "Trao đổi nhu cầu, phong cách và ý tưởng phù hợp với khách hàng." },
+      { no: "02", title: "Chuẩn bị buổi chụp", desc: "Sắp xếp thời gian, địa điểm, trang phục và các chi tiết cần thiết." },
+      { no: "03", title: "Chụp và chỉnh ảnh", desc: "Thực hiện buổi chụp, chọn ảnh và chỉnh sửa theo phong cách đã thống nhất." },
     ],
   },
   {
     slug: "chinh-anh",
     name: "Chỉnh Ảnh", price: "50.000đ", emoji: "🎨",
     desc: "Chỉnh màu, retouch và xuất ảnh chất lượng cao.",
-    img: "", hero: "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=1400&h=600&fit=crop&auto=format",
-    duration: "1–2 ngày/ảnh", category: "Hậu Kỳ",
+    img: "https://images.pexels.com/photos/32458841/pexels-photo-32458841.jpeg", hero: "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=1400&h=600&fit=crop&auto=format",
+    duration: "1 giờ", category: "Hậu Kỳ & In Ấn",
     fullDesc: "Dịch vụ chỉnh ảnh chuyên nghiệp của HBT Studio bao gồm chỉnh màu (color grading), làm mịn da, xử lý background và tối ưu ánh sáng. Phù hợp cho cá nhân lẫn doanh nghiệp cần ảnh đẹp nhanh.",
     includes: ["Chỉnh màu & tone theo yêu cầu", "Retouch da, xử lý khuyết điểm", "Tách/thay background nếu cần", "Xuất file JPG/PNG chất lượng cao"],
     process: [
-      { no: "01", title: "Nhận file & yêu cầu", desc: "Nhận ảnh gốc và trao đổi về tone màu, phong cách mong muốn." },
-      { no: "02", title: "Chỉnh sửa", desc: "Thực hiện retouch và color grading theo đúng yêu cầu." },
-      { no: "03", title: "Gửi bản xem trước", desc: "Gửi bản preview để khách duyệt, chỉnh sửa nếu cần trước khi xuất file." },
+      { no: "01", title: "Tư vấn concept", desc: "Trao đổi nhu cầu, phong cách và ý tưởng phù hợp với khách hàng." },
+      { no: "02", title: "Chuẩn bị buổi chụp", desc: "Sắp xếp thời gian, địa điểm, trang phục và các chi tiết cần thiết." },
+      { no: "03", title: "Chụp và chỉnh ảnh", desc: "Thực hiện buổi chụp, chọn ảnh và chỉnh sửa theo phong cách đã thống nhất." },
     ],
   },
 ];
@@ -197,7 +197,7 @@ export const PORTFOLIO: AlbumItem[] = [
   {
     slug: "hoa-xinh",
     title: "Hoa Xinh", category: "Cá nhân",
-    img:  hoaXinhImg,
+    img: hoaXinhImg,
     hero: hoaXinhImg,
     concept: "Thiên nhiên · Hoa lá · Tự nhiên",
     desc: "Bộ ảnh Hoa Xinh được thực hiện giữa khung cảnh thiên nhiên tươi mát, nơi từng bông hoa trở thành người bạn đồng hành dịu dàng. Chúng tôi chọn ánh sáng buổi chiều vàng để tôn lên vẻ đẹp trong sáng, nhẹ nhàng của nhân vật.",
@@ -213,7 +213,7 @@ export const PORTFOLIO: AlbumItem[] = [
   {
     slug: "hoang-hon-va-em",
     title: "Hoàng Hôn Và Em", category: "Couple",
-    img:  hoangHonImg,
+    img: hoangHonImg,
     hero: hoangHonImg,
     concept: "Hoàng hôn · Lãng mạn · Ngoại cảnh",
     desc: "Hoàng hôn là khoảnh khắc đẹp nhất trong ngày — khi ánh nắng cuối chiều nhuộm vàng tất cả. Bộ ảnh này ghi lại tình yêu của hai người trong ánh sáng dịu dàng đó, nơi mỗi nụ cười, mỗi cái nắm tay đều trở nên lung linh và đáng nhớ mãi.",
@@ -229,7 +229,7 @@ export const PORTFOLIO: AlbumItem[] = [
   {
     slug: "ca-nha-cung-vui",
     title: "Cả Nhà Cùng Vui", category: "Gia đình",
-    img:  "https://images.unsplash.com/photo-1760633549227-901e0c3cf9d3?w=600&h=800&fit=crop&auto=format",
+    img: "https://images.unsplash.com/photo-1760633549227-901e0c3cf9d3?w=600&h=800&fit=crop&auto=format",
     hero: "https://images.unsplash.com/photo-1760633549227-901e0c3cf9d3?w=1400&h=700&fit=crop&auto=format",
     concept: "Gia đình · Ngoại cảnh · Hạnh phúc",
     desc: "Không có gì quý hơn những khoảnh khắc sum vầy bên gia đình. Bộ ảnh Cả Nhà Cùng Vui ghi lại tiếng cười, những cái ôm ấm áp và ánh mắt yêu thương — tất cả hòa quyện trong khung cảnh thiên nhiên tươi xanh, tạo nên một tác phẩm đong đầy cảm xúc.",
@@ -245,7 +245,7 @@ export const PORTFOLIO: AlbumItem[] = [
   {
     slug: "tuoi-18",
     title: "Tuổi 18", category: "Cá nhân",
-    img:  "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&h=800&fit=crop&auto=format",
+    img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&h=800&fit=crop&auto=format",
     hero: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=1400&h=700&fit=crop&auto=format",
     concept: "Trẻ trung · Rực rỡ · Kỷ niệm",
     desc: "Tuổi 18 — cột mốc đáng nhớ nhất trong cuộc đời mỗi người. Bộ ảnh được thực hiện với năng lượng tươi trẻ, rực rỡ, ghi lại vẻ đẹp thanh xuân đầy sức sống và những ước mơ đang chờ phía trước.",
@@ -261,7 +261,7 @@ export const PORTFOLIO: AlbumItem[] = [
   {
     slug: "marry-me",
     title: "Marry Me", category: "Cưới",
-    img:  marryMeImg,
+    img: marryMeImg,
     hero: marryMeImg,
     concept: "Cưới · Hoa · Lãng mạn",
     desc: "Ngày cưới là ngày đẹp nhất trong cuộc đời. Bộ ảnh Marry Me ghi lại trọn vẹn cảm xúc của khoảnh khắc thiêng liêng đó — từ chiếc nhẫn đính hôn long lanh đến nụ hôn đầu tiên của đôi vợ chồng, tất cả đều được lưu giữ trong từng khung hình.",
@@ -277,12 +277,12 @@ export const PORTFOLIO: AlbumItem[] = [
   {
     slug: "khai-truong",
     title: "Khai Trương", category: "Doanh nghiệp",
-    img:  khaiTruongSvg,
-    hero: khaiTruongSvg,
+    img: khaiTruongImg,
+    hero: khaiTruongImg,
     concept: "Sự kiện · Doanh nghiệp · Chuyên nghiệp",
     desc: "Lễ khai trương là bước khởi đầu của một hành trình mới. Bộ ảnh phóng sự ghi lại toàn bộ không khí náo nhiệt, niềm vui và những khoảnh khắc đáng nhớ của ngày trọng đại — tư liệu quý giá cho thương hiệu của bạn.",
     photos: [
-      khaiTruongSvg,
+      khaiTruongImg,
       "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=1000&fit=crop&auto=format",
       "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&h=600&fit=crop&auto=format",
       "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&h=1000&fit=crop&auto=format",
@@ -293,12 +293,12 @@ export const PORTFOLIO: AlbumItem[] = [
   {
     slug: "tam-biet-tuoi-hoc-tro",
     title: "Tạm Biệt Tuổi Học Trò", category: "Nhóm",
-    img:  "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=800&fit=crop&auto=format",
-    hero: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1400&h=700&fit=crop&auto=format",
+    img: "https://images.pexels.com/photos/32121122/pexels-photo-32121122.jpeg",
+    hero: "https://images.pexels.com/photos/32121122/pexels-photo-32121122.jpeg",
     concept: "Kỷ yếu · Bạn bè · Ký ức",
     desc: "Những năm tháng học trò là quãng thời gian đẹp nhất — và bộ ảnh kỷ yếu này là cách để lưu giữ mãi mãi. Từng khuôn mặt rạng rỡ, từng nụ cười hồn nhiên đều được ghi lại trọn vẹn, trở thành ký ức không phai của cả nhóm.",
     photos: [
-      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop&auto=format",
+      "https://images.pexels.com/photos/32121122/pexels-photo-32121122.jpeg",
       "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=800&h=1000&fit=crop&auto=format",
       "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&h=600&fit=crop&auto=format",
       "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800&h=1000&fit=crop&auto=format",
@@ -309,7 +309,7 @@ export const PORTFOLIO: AlbumItem[] = [
   {
     slug: "cot-moc",
     title: "Cột Mốc", category: "Couple",
-    img:  cotMocImg,
+    img: cotMocImg,
     hero: cotMocImg,
     concept: "Tình yêu · Kỷ niệm · Cột mốc",
     desc: "Mỗi tình yêu đều có những cột mốc riêng — ngày đầu hẹn hò, kỷ niệm một năm, hay những khoảnh khắc bình dị nhưng đong đầy yêu thương. Bộ ảnh Cột Mốc được thực hiện để tôn vinh những khoảnh khắc đó.",
@@ -325,15 +325,15 @@ export const PORTFOLIO: AlbumItem[] = [
 
 export const STATS = [
   { target: 500, suffix: "+", label: "Khách hàng hài lòng", icon: "🌿" },
-  { target: 10,  suffix: "+", label: "Concept độc đáo",     icon: "🎨" },
-  { target: 2019, suffix: "",  label: "Năm thành lập",        icon: "✦"  },
-  { target: 100, suffix: "%", label: "Tận tâm phục vụ",     icon: "💚" },
+  { target: 10, suffix: "+", label: "Concept độc đáo", icon: "🎨" },
+  { target: 2019, suffix: "", label: "Năm thành lập", icon: "✦" },
+  { target: 100, suffix: "%", label: "Tận tâm phục vụ", icon: "💚" },
 ];
 
 export const TESTIMONIALS = [
-  { name: "Nguyễn Minh Châu", role: "Cô dâu",          text: "Studio chụp tuyệt vời! Ekip rất chuyên nghiệp và thân thiện. Bộ ảnh cưới vượt ngoài mong đợi, từng khoảnh khắc đều được ghi lại tinh tế và đầy cảm xúc.", rating: 5, img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&auto=format" },
-  { name: "Trần Quốc Hùng",   role: "Chủ doanh nghiệp", text: "Chụp ảnh doanh nghiệp cho team ở đây. Ảnh ra rất đẹp, chuyên nghiệp. Cách xử lý ánh sáng và góc chụp rất xuất sắc, mình rất hài lòng.",                   rating: 5, img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&auto=format" },
-  { name: "Lê Thị Hương",     role: "Khách hàng",       text: "Đặt lịch chụp concept Hoàng hôn và Em, ekip rất nhiệt tình hỗ trợ từ trang phục đến tạo dáng. Mình sẽ quay lại cho các dịp đặc biệt khác!",                rating: 5, img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&auto=format" },
+  { name: "Nguyễn Minh Châu", role: "Cô dâu", text: "Studio chụp tuyệt vời! Ekip rất chuyên nghiệp và thân thiện. Bộ ảnh cưới vượt ngoài mong đợi, từng khoảnh khắc đều được ghi lại tinh tế và đầy cảm xúc.", rating: 5, img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&auto=format" },
+  { name: "Trần Quốc Hùng", role: "Chủ doanh nghiệp", text: "Chụp ảnh doanh nghiệp cho team ở đây. Ảnh ra rất đẹp, chuyên nghiệp. Cách xử lý ánh sáng và góc chụp rất xuất sắc, mình rất hài lòng.", rating: 5, img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&auto=format" },
+  { name: "Lê Thị Hương", role: "Khách hàng", text: "Đặt lịch chụp concept Hoàng hôn và Em, ekip rất nhiệt tình hỗ trợ từ trang phục đến tạo dáng. Mình sẽ quay lại cho các dịp đặc biệt khác!", rating: 5, img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&auto=format" },
 ];
 
 // ── Hooks
@@ -517,14 +517,31 @@ export function ServiceCard({ s, onBook, onDetail }: { s: ServiceDetail; onBook:
 
 export function PortfolioCard({ p, onClick }: { p: AlbumItem; onClick?: () => void }) {
   return (
-    <div className="group relative overflow-hidden cursor-pointer" style={{ borderRadius: "12px", background: C.sageLight }} onClick={onClick}>
-      <img src={p.img} alt={p.title} className="w-full object-cover transition-transform duration-700 group-hover:scale-110" style={{ height: "260px" }} />
-      <div className="absolute inset-0 flex flex-col justify-end p-4" style={{ background: "linear-gradient(to top, rgba(52,78,65,0.85) 0%, transparent 55%)" }}>
-        <div className="text-xs font-semibold tracking-wide uppercase" style={{ color: C.champagne }}>{p.category}</div>
-        <div className="font-semibold text-sm mt-0.5 text-white" style={{ fontFamily: "'Playfair Display', serif" }}>{p.title}</div>
-        <button className="mt-1.5 text-xs text-white/60 flex items-center gap-1 hover:text-white transition-colors opacity-0 group-hover:opacity-100 duration-300">
-          Xem album <ArrowRight size={10} />
-        </button>
+    <div
+      className="group relative overflow-hidden cursor-pointer"
+      style={{ borderRadius: "12px", background: C.sageLight, transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1)" }}
+      onMouseEnter={(e) => {
+        const el = e.currentTarget;
+        el.style.transform = "translateY(-6px)";
+        el.style.boxShadow = "0 16px 40px rgba(52,78,65,0.25)";
+      }}
+      onMouseLeave={(e) => {
+        const el = e.currentTarget;
+        el.style.transform = "translateY(0)";
+        el.style.boxShadow = "none";
+      }}
+      onClick={onClick}
+    >
+      <img src={p.img} alt={p.title} className="w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105" style={{ height: "260px" }} />
+      <div className="absolute inset-0 transition-opacity duration-700 opacity-70 group-hover:opacity-100" style={{ background: "linear-gradient(to top, rgba(34, 56, 44, 0.9) 0%, rgba(34, 56, 44, 0) 65%)" }} />
+      <div className="absolute inset-0 flex flex-col justify-end p-5 transition-transform duration-500 ease-out translate-y-3 group-hover:translate-y-0">
+        <div className="text-xs font-semibold tracking-widest uppercase transition-all duration-500" style={{ color: C.champagne }}>{p.category}</div>
+        <div className="font-semibold text-base mt-1 text-white" style={{ fontFamily: "'Playfair Display', serif" }}>{p.title}</div>
+        <div className="h-0 opacity-0 overflow-hidden group-hover:h-5 group-hover:opacity-100 group-hover:mt-2 transition-all duration-500 ease-out">
+          <button className="text-xs text-white/90 flex items-center gap-1 hover:text-white transition-colors">
+            Xem album <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform duration-300" />
+          </button>
+        </div>
       </div>
     </div>
   );

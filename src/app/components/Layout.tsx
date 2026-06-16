@@ -7,11 +7,11 @@ import logo from "@/imports/logo4.png";
 import { C, globalStyles } from "@/app/shared";
 
 const NAV_LINKS = [
-  { label: "Trang chủ",   path: "/" },
+  { label: "Trang chủ", path: "/" },
   { label: "Về chúng tôi", path: "/about" },
-  { label: "Dịch vụ",     path: "/services" },
-  { label: "Album",        path: "/portfolio" },
-  { label: "Liên hệ",     path: "/contact" },
+  { label: "Dịch vụ", path: "/services" },
+  { label: "Album", path: "/portfolio" },
+  { label: "Liên hệ", path: "/contact" },
 ];
 
 export default function Layout() {
@@ -30,10 +30,17 @@ export default function Layout() {
   // close mobile menu on route change
   useEffect(() => { setMenuOpen(false); window.scrollTo(0, 0); }, [location.pathname]);
 
-  const go = (path: string) => { navigate(path); setMenuOpen(false); };
+  const go = (path: string) => {
+    if (location.pathname === path) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      navigate(path);
+    }
+    setMenuOpen(false);
+  };
 
   const textColor = (isHome && !scrolled) ? "rgba(255,255,255,0.92)" : C.forest;
-  const subColor  = (isHome && !scrolled) ? "rgba(255,255,255,0.65)" : C.sageMain;
+  const subColor = (isHome && !scrolled) ? "rgba(255,255,255,0.65)" : C.sageMain;
 
   return (
     <div style={{ fontFamily: "'Quicksand', sans-serif", background: C.bg, color: C.forest }}>
@@ -140,13 +147,13 @@ export default function Layout() {
       <footer className="py-12 px-6" style={{ background: C.forest }}>
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
-            <div className="flex items-center gap-3">
-              <ImageWithFallback src={logo} alt="HBT Studio logo" className="object-contain" style={{ width: 56, height: 56, filter: "brightness(0) invert(1) sepia(1) saturate(0.6) brightness(1.1)" }} />
+            <button onClick={() => go("/")} className="flex items-center gap-3 group text-left cursor-pointer transition-opacity hover:opacity-80">
+              <ImageWithFallback src={logo} alt="HBT Studio logo" className="object-contain transition-transform duration-300 group-hover:scale-105" style={{ width: 56, height: 56, filter: "brightness(0) invert(1) sepia(1) saturate(0.6) brightness(1.1)" }} />
               <div>
-                <div className="font-bold tracking-widest" style={{ fontFamily: "'Playfair Display', serif", color: C.champagne, letterSpacing: "0.14em", fontSize: "1.1rem" }}>HBT STUDIO</div>
+                <div className="font-bold tracking-widest transition-colors duration-300" style={{ fontFamily: "'Playfair Display', serif", color: C.champagne, letterSpacing: "0.14em", fontSize: "1.1rem" }}>HBT STUDIO</div>
                 <div className="text-xs mt-0.5" style={{ color: C.sageMain }}>236B Lê Văn Sỹ, Quận 3, TP.HCM</div>
               </div>
-            </div>
+            </button>
             <div className="flex flex-wrap gap-6 justify-center">
               {NAV_LINKS.map((l) => (
                 <button key={l.path} onClick={() => go(l.path)} className="text-xs font-medium transition-colors duration-300 hover:text-white" style={{ color: C.sageMain }}>{l.label}</button>

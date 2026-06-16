@@ -82,12 +82,12 @@ export default function Home() {
         <ParallaxLeaf style={{ bottom: 120, left: 40, zIndex: 15, transform: "scaleX(-1)" }} />
 
         <div className="relative z-20 max-w-7xl mx-auto px-6 w-full pt-20">
-          <div className="max-w-xl">
+          <div className="max-w-2xl">
             <div className="text-xs tracking-widest uppercase mb-5 flex items-center gap-3" style={{ color: C.champagne, opacity: 0, animation: "fadeUp 1s ease 0.2s forwards" }}>
               <span className="inline-block w-8 h-px" style={{ background: C.champagne }} />
               Nhiếp Ảnh Nghệ Thuật · TP.HCM
             </div>
-            <h1 className="font-semibold leading-none mb-5 text-white" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2.8rem, 7vw, 5.2rem)", lineHeight: 1.08, opacity: 0, animation: "fadeUp 1s ease 0.35s forwards" }}>
+            <h1 className="font-semibold leading-none mb-5 text-white" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2rem, 5vw, 3.8rem)", lineHeight: 1.2, opacity: 0, animation: "fadeUp 1s ease 0.35s forwards" }}>
               Mỗi khoảnh khắc<br />
               <em className="italic" style={{ color: C.champagne }}>xứng đáng</em><br />
               được lưu giữ
@@ -111,41 +111,41 @@ export default function Home() {
 
           {/* icon 0: 4-petal cherry blossom */}
           <button onClick={() => goSlide(0)} aria-label="Slide 1" className="transition-all duration-400"
-            style={{ opacity: slide===0 ? 1 : 0.4, transform: slide===0 ? "scale(1.1)" : "scale(0.85)" }}>
+            style={{ opacity: slide === 0 ? 1 : 0.4, transform: slide === 0 ? "scale(1.1)" : "scale(0.85)" }}>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <ellipse cx="10" cy="4.5" rx="2" ry="4"   fill={slide===0 ? C.pink : "rgba(255,255,255,0.75)"} />
-              <ellipse cx="10" cy="15.5" rx="2" ry="4"  fill={slide===0 ? C.pink : "rgba(255,255,255,0.75)"} />
-              <ellipse cx="4.5" cy="10" rx="4" ry="2"   fill={slide===0 ? C.pink : "rgba(255,255,255,0.75)"} />
-              <ellipse cx="15.5" cy="10" rx="4" ry="2"  fill={slide===0 ? C.pink : "rgba(255,255,255,0.75)"} />
-              <circle cx="10" cy="10" r="3" fill={slide===0 ? C.peach : "rgba(255,255,255,0.9)"} />
-              <circle cx="10" cy="10" r="1.4" fill={slide===0 ? C.white : "rgba(200,200,200,0.6)"} />
+              <ellipse cx="10" cy="4.5" rx="2" ry="4" fill={slide === 0 ? C.pink : "rgba(255,255,255,0.75)"} />
+              <ellipse cx="10" cy="15.5" rx="2" ry="4" fill={slide === 0 ? C.pink : "rgba(255,255,255,0.75)"} />
+              <ellipse cx="4.5" cy="10" rx="4" ry="2" fill={slide === 0 ? C.pink : "rgba(255,255,255,0.75)"} />
+              <ellipse cx="15.5" cy="10" rx="4" ry="2" fill={slide === 0 ? C.pink : "rgba(255,255,255,0.75)"} />
+              <circle cx="10" cy="10" r="3" fill={slide === 0 ? C.peach : "rgba(255,255,255,0.9)"} />
+              <circle cx="10" cy="10" r="1.4" fill={slide === 0 ? C.white : "rgba(200,200,200,0.6)"} />
             </svg>
           </button>
 
           {/* icon 1: leaf with veins */}
           <button onClick={() => goSlide(1)} aria-label="Slide 2" className="transition-all duration-400"
-            style={{ opacity: slide===1 ? 1 : 0.4, transform: slide===1 ? "scale(1.1)" : "scale(0.85)" }}>
+            style={{ opacity: slide === 1 ? 1 : 0.4, transform: slide === 1 ? "scale(1.1)" : "scale(0.85)" }}>
             <svg width="18" height="22" viewBox="0 0 18 22" fill="none">
-              <path d="M9 1 Q17 5 15 13 Q12 19 9 21 Q6 19 3 13 Q1 5 9 1Z" fill={slide===1 ? C.sageMain : "rgba(255,255,255,0.72)"} />
-              <path d="M9 1 Q7.5 9 9 21" stroke={slide===1 ? C.forest : "rgba(255,255,255,0.45)"} strokeWidth="1" fill="none" />
-              <path d="M9 7 Q12 9.5 14.5 8"  stroke={slide===1 ? C.forest : "rgba(255,255,255,0.35)"} strokeWidth="0.7" fill="none" />
-              <path d="M9 12 Q12 14 14 13"  stroke={slide===1 ? C.forest : "rgba(255,255,255,0.35)"} strokeWidth="0.7" fill="none" />
-              <path d="M9 7 Q6 9.5 3.5 8"   stroke={slide===1 ? C.forest : "rgba(255,255,255,0.35)"} strokeWidth="0.7" fill="none" />
+              <path d="M9 1 Q17 5 15 13 Q12 19 9 21 Q6 19 3 13 Q1 5 9 1Z" fill={slide === 1 ? C.sageMain : "rgba(255,255,255,0.72)"} />
+              <path d="M9 1 Q7.5 9 9 21" stroke={slide === 1 ? C.forest : "rgba(255,255,255,0.45)"} strokeWidth="1" fill="none" />
+              <path d="M9 7 Q12 9.5 14.5 8" stroke={slide === 1 ? C.forest : "rgba(255,255,255,0.35)"} strokeWidth="0.7" fill="none" />
+              <path d="M9 12 Q12 14 14 13" stroke={slide === 1 ? C.forest : "rgba(255,255,255,0.35)"} strokeWidth="0.7" fill="none" />
+              <path d="M9 7 Q6 9.5 3.5 8" stroke={slide === 1 ? C.forest : "rgba(255,255,255,0.35)"} strokeWidth="0.7" fill="none" />
             </svg>
           </button>
 
           {/* icon 2: sunflower / spiral center */}
           <button onClick={() => goSlide(2)} aria-label="Slide 3" className="transition-all duration-400"
-            style={{ opacity: slide===2 ? 1 : 0.4, transform: slide===2 ? "scale(1.1)" : "scale(0.85)" }}>
+            style={{ opacity: slide === 2 ? 1 : 0.4, transform: slide === 2 ? "scale(1.1)" : "scale(0.85)" }}>
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
               {/* long thin petals at 8 angles */}
-              {[0,45,90,135,180,225,270,315].map((deg, i) => (
+              {[0, 45, 90, 135, 180, 225, 270, 315].map((deg, i) => (
                 <ellipse key={i} cx="11" cy="3.5" rx="1.4" ry="3.5"
-                  fill={slide===2 ? (i%2===0 ? C.champagne : C.peach) : "rgba(255,255,255,0.7)"}
+                  fill={slide === 2 ? (i % 2 === 0 ? C.champagne : C.peach) : "rgba(255,255,255,0.7)"}
                   transform={`rotate(${deg} 11 11)`} />
               ))}
-              <circle cx="11" cy="11" r="3.8" fill={slide===2 ? C.forest : "rgba(255,255,255,0.85)"} />
-              <circle cx="11" cy="11" r="2"   fill={slide===2 ? C.champagne : "rgba(200,200,200,0.5)"} />
+              <circle cx="11" cy="11" r="3.8" fill={slide === 2 ? C.forest : "rgba(255,255,255,0.85)"} />
+              <circle cx="11" cy="11" r="2" fill={slide === 2 ? C.champagne : "rgba(200,200,200,0.5)"} />
             </svg>
           </button>
 
@@ -281,7 +281,7 @@ export default function Home() {
         {/* ── CTA */}
         <section className="py-24 px-6 relative overflow-hidden">
           <div className="absolute inset-0">
-            <img src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=1600&h=600&fit=crop&auto=format" alt="Nature" className="w-full h-full object-cover" style={{ filter: "brightness(0.32) saturate(1.2)" }} />
+            <img src="https://images.pexels.com/photos/1696735/pexels-photo-1696735.jpeg" alt="Nature" className="w-full h-full object-cover" style={{ filter: "brightness(0.32) saturate(1.2)" }} />
             <div className="absolute inset-0" style={{ background: `rgba(52,78,65,0.55)` }} />
           </div>
           <FadeUp>

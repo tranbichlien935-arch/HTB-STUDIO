@@ -59,8 +59,12 @@ export default function About() {
       </section>
 
       {/* Values */}
-      <section className="py-20 px-6" style={{ background: C.sageLight }}>
-        <div className="max-w-7xl mx-auto">
+      <section className="py-20 px-6 relative overflow-hidden" style={{ background: C.sageLight }}>
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <img src="https://images.pexels.com/photos/7144929/pexels-photo-7144929.jpeg" alt="Values Background" className="w-full h-full object-cover" style={{ opacity: 0.15, filter: "brightness(1.1) saturate(0.8)" }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(212,224,208,0.7) 0%, rgba(212,224,208,0.95) 100%)" }} />
+        </div>
+        <div className="max-w-7xl mx-auto relative z-10">
           <FadeUp>
             <div className="text-center mb-4">
               <div className="text-xs tracking-widest uppercase mb-3 flex items-center justify-center gap-2" style={{ color: C.sageMain }}>
@@ -194,9 +198,9 @@ export default function About() {
                 <div className="space-y-4">
                   {[
                     { icon: <Camera size={16} color={C.forestMid} />, text: "Tư vấn concept miễn phí trước buổi chụp" },
-                    { icon: <Star size={16} color={C.forestMid} />,   text: "Giao ảnh chỉnh sửa trong 5–7 ngày làm việc" },
-                    { icon: <Award size={16} color={C.forestMid} />,  text: "Hoàn tiền 100% nếu không hài lòng với kết quả" },
-                    { icon: <Leaf size={16} color={C.forestMid} />,   text: "Không gian chụp thoải mái, không áp lực" },
+                    { icon: <Star size={16} color={C.forestMid} />, text: "Giao ảnh chỉnh sửa trong 5–7 ngày làm việc" },
+                    { icon: <Award size={16} color={C.forestMid} />, text: "Hoàn tiền 100% nếu không hài lòng với kết quả" },
+                    { icon: <Leaf size={16} color={C.forestMid} />, text: "Không gian chụp thoải mái, không áp lực" },
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-3 pb-4 border-b last:border-b-0 last:pb-0" style={{ borderColor: C.sageLight }}>
                       <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0" style={{ background: C.sageLight }}>
@@ -211,23 +215,31 @@ export default function About() {
 
             {/* Bottom wide: what to prepare */}
             <FadeUp delay={0.22} className="md:col-span-2">
-              <div className="rounded-2xl p-8" style={{ background: C.forest }}>
-                <h3 className="font-semibold mb-6 text-lg text-white" style={{ fontFamily: "'Playfair Display', serif" }}>
-                  Khách hàng cần chuẩn bị gì?
-                </h3>
-                <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
-                  {[
-                    { no: "01", title: "Trang phục", desc: "Chuẩn bị 1–2 bộ phù hợp concept, ủi phẳng trước khi đến." },
-                    { no: "02", title: "Tâm lý thoải mái", desc: "Không cần biết tạo dáng — ekip sẽ hướng dẫn từng bước." },
-                    { no: "03", title: "Đến đúng giờ", desc: "Vui lòng có mặt trước 10 phút để make up và chuẩn bị." },
-                    { no: "04", title: "Ý tưởng (nếu có)", desc: "Bạn có thể mang ảnh tham khảo để ekip nắm phong cách mong muốn." },
-                  ].map(item => (
-                    <div key={item.no} className="p-5 rounded-xl" style={{ background: "rgba(255,255,255,0.07)" }}>
-                      <div className="font-bold mb-2" style={{ fontFamily: "'Playfair Display', serif", fontSize: "2rem", color: C.sageMain, opacity: 0.5, lineHeight: 1 }}>{item.no}</div>
-                      <div className="font-semibold text-sm mb-1 text-white">{item.title}</div>
-                      <div className="text-xs leading-relaxed" style={{ color: C.sageMain }}>{item.desc}</div>
-                    </div>
-                  ))}
+              <div className="rounded-2xl p-8 relative overflow-hidden" style={{ background: C.forest }}>
+                {/* Background Image */}
+                <div className="absolute inset-0 z-0 pointer-events-none">
+                  <img src="https://images.pexels.com/photos/7144929/pexels-photo-7144929.jpeg" alt="Preparation" className="w-full h-full object-cover" style={{ opacity: 0.15, filter: "brightness(0.9) saturate(0.8)" }} />
+                  <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${C.forest} 0%, rgba(52,78,65,0.4) 100%)`, opacity: 0.8 }} />
+                </div>
+
+                <div className="relative z-10">
+                  <h3 className="font-semibold mb-6 text-lg text-white" style={{ fontFamily: "'Playfair Display', serif" }}>
+                    Khách hàng cần chuẩn bị gì?
+                  </h3>
+                  <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+                    {[
+                      { no: "01", title: "Trang phục", desc: "Chuẩn bị 1–2 bộ phù hợp concept, ủi phẳng trước khi đến." },
+                      { no: "02", title: "Tâm lý thoải mái", desc: "Không cần biết tạo dáng — ekip sẽ hướng dẫn từng bước." },
+                      { no: "03", title: "Đến đúng giờ", desc: "Vui lòng có mặt trước 10 phút để make up và chuẩn bị." },
+                      { no: "04", title: "Ý tưởng (nếu có)", desc: "Bạn có thể mang ảnh tham khảo để ekip nắm phong cách mong muốn." },
+                    ].map(item => (
+                      <div key={item.no} className="p-5 rounded-xl border border-white/5" style={{ background: "rgba(255,255,255,0.06)", backdropFilter: "blur(8px)" }}>
+                        <div className="font-bold mb-2" style={{ fontFamily: "'Playfair Display', serif", fontSize: "2rem", color: C.sageMain, opacity: 0.5, lineHeight: 1 }}>{item.no}</div>
+                        <div className="font-semibold text-sm mb-1 text-white">{item.title}</div>
+                        <div className="text-xs leading-relaxed" style={{ color: C.sageMain }}>{item.desc}</div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </FadeUp>

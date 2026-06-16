@@ -2,8 +2,6 @@ import { useNavigate } from "react-router";
 import { Leaf, ArrowRight } from "lucide-react";
 import { C, SERVICES, FadeUp, BranchDivider, SectionBanner, ServiceCard } from "@/app/shared";
 
-const MAIN_SERVICES = SERVICES.slice(0, 6);
-const ADDON_SERVICES = SERVICES.slice(6);
 
 export default function Services() {
   const navigate = useNavigate();
@@ -36,63 +34,12 @@ export default function Services() {
           </FadeUp>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-            {MAIN_SERVICES.map((s, i) => (
+            {SERVICES.map((s, i) => (
               <FadeUp key={s.name} delay={i * 0.07}>
                 <ServiceCard s={s} onBook={() => navigate("/contact")} onDetail={() => navigate(`/services/${s.slug}`)} />
               </FadeUp>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ── ADDON SERVICES */}
-      <section className="py-16 px-6" style={{ background: C.sageLight }}>
-        <div className="max-w-7xl mx-auto">
-          <FadeUp>
-            <div className="text-center mb-4">
-              <div className="text-xs tracking-widest uppercase mb-3 flex items-center justify-center gap-2" style={{ color: C.sageMain }}>
-                <Leaf size={12} color={C.sageMain} /> Dịch vụ bổ sung <Leaf size={12} color={C.sageMain} style={{ transform: "scaleX(-1)" }} />
-              </div>
-              <h2 className="font-semibold" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.6rem, 3vw, 2.2rem)", color: C.forest }}>
-                Thêm vào gói của bạn
-              </h2>
-            </div>
-            <BranchDivider />
-          </FadeUp>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
-            {ADDON_SERVICES.map((s, i) => (
-              <FadeUp key={s.name} delay={i * 0.08}>
-                <div
-                  className="group flex flex-col p-6 rounded-2xl border transition-all duration-300 cursor-pointer"
-                  style={{ borderColor: "rgba(255,255,255,0.6)", background: "rgba(255,255,255,0.55)" }}
-                  onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.background = C.white; el.style.boxShadow = `0 8px 32px rgba(52,78,65,0.1)`; el.style.transform = "translateY(-4px)"; }}
-                  onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.background = "rgba(255,255,255,0.55)"; el.style.boxShadow = "none"; el.style.transform = "translateY(0)"; }}
-                >
-                  <div className="text-2xl mb-3">{s.emoji}</div>
-                  <h3 className="font-semibold text-sm mb-1" style={{ fontFamily: "'Playfair Display', serif", color: C.forest }}>{s.name}</h3>
-                  <p className="text-xs leading-relaxed flex-1 mb-4" style={{ color: C.sageMain }}>{s.desc}</p>
-                  <div className="flex items-center justify-between mt-auto">
-                    <span className="font-bold text-base" style={{ color: C.peach }}>{s.price}</span>
-                    <button
-                      onClick={() => navigate("/contact")}
-                      className="text-xs font-semibold flex items-center gap-1 px-2.5 py-1 rounded-full transition-all duration-300"
-                      style={{ background: C.sageLight, color: C.forest }}
-                    >
-                      Thêm <ArrowRight size={10} />
-                    </button>
-                  </div>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
-
-          {/* price note */}
-          <FadeUp delay={0.3}>
-            <p className="text-center text-xs mt-8" style={{ color: C.sageMain }}>
-              * Giá trên chưa bao gồm VAT. Liên hệ để được báo giá combo ưu đãi.
-            </p>
-          </FadeUp>
         </div>
       </section>
 

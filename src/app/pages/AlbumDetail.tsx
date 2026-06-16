@@ -43,7 +43,7 @@ export default function AlbumDetail() {
         {/* back button */}
         <button
           onClick={() => navigate("/portfolio")}
-          className="absolute top-28 left-6 z-10 flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white transition-colors duration-300"
+          className="absolute top-28 left-6 z-20 flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white transition-colors duration-300"
         >
           <ArrowLeft size={16} /> Quay lại Album
         </button>
