@@ -1,0 +1,136 @@
+<svg viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="600" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#EEF4EC"/>
+      <stop offset="100%" stop-color="#D4E0D0"/>
+    </linearGradient>
+    <linearGradient id="ribbon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#F4ACB7"/>
+      <stop offset="50%" stop-color="#F4A261"/>
+      <stop offset="100%" stop-color="#F4ACB7"/>
+    </linearGradient>
+    <linearGradient id="store" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#F5F0E8"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E9C46A" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#E9C46A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="600" height="400" fill="url(#bg)"/>
+  <ellipse cx="300" cy="200" rx="260" ry="175" fill="url(#glow)"/>
+
+  <!-- confetti -->
+  <circle cx="60"  cy="40"  r="5"   fill="#F4ACB7" opacity=".75"/>
+  <circle cx="120" cy="70"  r="3.5" fill="#E9C46A"  opacity=".75"/>
+  <circle cx="500" cy="50"  r="4"   fill="#A3B18A"  opacity=".75"/>
+  <circle cx="545" cy="90"  r="3.5" fill="#F4A261"  opacity=".75"/>
+  <circle cx="80"  cy="320" r="4"   fill="#E9C46A"  opacity=".75"/>
+  <circle cx="40"  cy="265" r="3"   fill="#F4ACB7"  opacity=".75"/>
+  <circle cx="560" cy="300" r="4"   fill="#A3B18A"  opacity=".75"/>
+  <circle cx="520" cy="350" r="3.5" fill="#F4A261"  opacity=".75"/>
+  <circle cx="180" cy="30"  r="3.5" fill="#A3B18A"  opacity=".75"/>
+  <circle cx="420" cy="25"  r="4"   fill="#F4ACB7"  opacity=".75"/>
+
+  <!-- balloon pink -->
+  <ellipse cx="110" cy="128" rx="28" ry="36" fill="#F4ACB7" opacity=".9"/>
+  <line x1="110" y1="164" x2="112" y2="210" stroke="#F4ACB7" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <path d="M110 163 Q118 170 110 176 Q102 170 110 163Z" fill="#F4ACB7" opacity=".7"/>
+  <ellipse cx="102" cy="118" rx="7" ry="9" fill="white" opacity=".3"/>
+
+  <!-- balloon peach -->
+  <ellipse cx="490" cy="108" rx="26" ry="33" fill="#F4A261" opacity=".9"/>
+  <line x1="490" y1="141" x2="488" y2="188" stroke="#F4A261" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <path d="M490 140 Q498 147 490 153 Q482 147 490 140Z" fill="#F4A261" opacity=".7"/>
+  <ellipse cx="482" cy="99"  rx="6" ry="8" fill="white" opacity=".3"/>
+
+  <!-- balloon champagne -->
+  <ellipse cx="158" cy="88"  rx="20" ry="26" fill="#E9C46A" opacity=".85"/>
+  <line x1="158" y1="114" x2="156" y2="150" stroke="#E9C46A" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <ellipse cx="151" cy="80" rx="5" ry="6" fill="white" opacity=".28"/>
+
+  <!-- balloon sage -->
+  <ellipse cx="448" cy="78"  rx="22" ry="28" fill="#A3B18A" opacity=".85"/>
+  <line x1="448" y1="106" x2="446" y2="145" stroke="#A3B18A" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <ellipse cx="441" cy="70" rx="5" ry="7" fill="white" opacity=".28"/>
+
+  <!-- storefront -->
+  <rect x="150" y="168" width="300" height="188" rx="4" fill="url(#store)" stroke="#D4E0D0" stroke-width="1.5"/>
+  <!-- awning -->
+  <path d="M140 170 L460 170 L450 200 L150 200Z" fill="#A3B18A"/>
+  <line x1="170" y1="170" x2="160" y2="200" stroke="rgba(255,255,255,.22)" stroke-width="9"/>
+  <line x1="200" y1="170" x2="190" y2="200" stroke="rgba(255,255,255,.22)" stroke-width="9"/>
+  <line x1="230" y1="170" x2="220" y2="200" stroke="rgba(255,255,255,.22)" stroke-width="9"/>
+  <line x1="260" y1="170" x2="250" y2="200" stroke="rgba(255,255,255,.22)" stroke-width="9"/>
+  <line x1="290" y1="170" x2="280" y2="200" stroke="rgba(255,255,255,.22)" stroke-width="9"/>
+  <line x1="320" y1="170" x2="310" y2="200" stroke="rgba(255,255,255,.22)" stroke-width="9"/>
+  <line x1="350" y1="170" x2="340" y2="200" stroke="rgba(255,255,255,.22)" stroke-width="9"/>
+  <line x1="380" y1="170" x2="370" y2="200" stroke="rgba(255,255,255,.22)" stroke-width="9"/>
+  <line x1="410" y1="170" x2="400" y2="200" stroke="rgba(255,255,255,.22)" stroke-width="9"/>
+  <line x1="440" y1="170" x2="430" y2="200" stroke="rgba(255,255,255,.22)" stroke-width="9"/>
+
+  <!-- sign -->
+  <rect x="210" y="202" width="180" height="26" rx="4" fill="#344E41"/>
+  <text x="300" y="220" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#E9C46A" letter-spacing="2">KHAI TRƯƠNG</text>
+
+  <!-- windows -->
+  <rect x="165" y="215" width="80" height="65" rx="6" fill="#D4E0D0" opacity=".7" stroke="#A3B18A" stroke-width="1"/>
+  <line x1="205" y1="215" x2="205" y2="280" stroke="#A3B18A" stroke-width="1" opacity=".5"/>
+  <line x1="165" y1="247" x2="245" y2="247" stroke="#A3B18A" stroke-width="1" opacity=".5"/>
+  <rect x="355" y="215" width="80" height="65" rx="6" fill="#D4E0D0" opacity=".7" stroke="#A3B18A" stroke-width="1"/>
+  <line x1="395" y1="215" x2="395" y2="280" stroke="#A3B18A" stroke-width="1" opacity=".5"/>
+  <line x1="355" y1="247" x2="435" y2="247" stroke="#A3B18A" stroke-width="1" opacity=".5"/>
+
+  <!-- door arch -->
+  <rect x="257" y="265" width="86" height="91" rx="43" fill="#EEF4EC" stroke="#A3B18A" stroke-width="1.5"/>
+  <rect x="270" y="278" width="60" height="78" rx="30" fill="#F5F0E8"/>
+  <circle cx="314" cy="317" r="4" fill="#A3B18A"/>
+
+  <!-- ribbon -->
+  <rect x="140" y="242" width="320" height="12" rx="6" fill="url(#ribbon)"/>
+  <rect x="140" y="242" width="320" height="4"  rx="3" fill="rgba(255,255,255,.35)"/>
+
+  <!-- scissors -->
+  <g transform="translate(286,232) rotate(-22)">
+    <ellipse cx="-13" cy="-8" rx="14" ry="5" fill="none" stroke="#344E41" stroke-width="2"/>
+    <ellipse cx="13"  cy="8"  rx="14" ry="5" fill="none" stroke="#344E41" stroke-width="2"/>
+    <line x1="-6" y1="-4" x2="6" y2="4" stroke="#344E41" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="-6" cy="-3" r="3.2" fill="#E9C46A" stroke="#344E41" stroke-width="1.5"/>
+    <circle cx="6"  cy="3"  r="3.2" fill="#E9C46A" stroke="#344E41" stroke-width="1.5"/>
+  </g>
+
+  <!-- ribbon bows -->
+  <path d="M162 248 Q142 235 132 248 Q142 258 162 248Z" fill="#F4ACB7"/>
+  <path d="M438 248 Q458 235 468 248 Q458 258 438 248Z" fill="#F4ACB7"/>
+
+  <!-- flowers left -->
+  <circle cx="155" cy="355" r="14" fill="#F4ACB7" opacity=".85"/>
+  <circle cx="135" cy="345" r="11" fill="#F4A261" opacity=".8"/>
+  <circle cx="170" cy="342" r="10" fill="#E9C46A" opacity=".8"/>
+  <circle cx="148" cy="337" r="8"  fill="#F4ACB7" opacity=".7"/>
+  <circle cx="158" cy="352" r="4"  fill="#344E41" opacity=".55"/>
+  <circle cx="140" cy="342" r="3"  fill="#344E41" opacity=".5"/>
+  <line x1="155" y1="362" x2="150" y2="392" stroke="#588157" stroke-width="2"/>
+  <line x1="137" y1="355" x2="131" y2="392" stroke="#588157" stroke-width="2"/>
+  <path d="M152 376 Q144 368 148 360" stroke="#A3B18A" stroke-width="1.5" fill="none"/>
+
+  <!-- flowers right -->
+  <circle cx="445" cy="355" r="14" fill="#A3B18A" opacity=".85"/>
+  <circle cx="465" cy="345" r="11" fill="#F4ACB7" opacity=".8"/>
+  <circle cx="430" cy="342" r="10" fill="#F4A261" opacity=".8"/>
+  <circle cx="452" cy="337" r="8"  fill="#E9C46A" opacity=".7"/>
+  <circle cx="443" cy="352" r="4"  fill="#344E41" opacity=".55"/>
+  <circle cx="462" cy="342" r="3"  fill="#344E41" opacity=".5"/>
+  <line x1="445" y1="362" x2="450" y2="392" stroke="#588157" stroke-width="2"/>
+  <line x1="463" y1="355" x2="469" y2="392" stroke="#588157" stroke-width="2"/>
+  <path d="M448 376 Q456 368 452 360" stroke="#A3B18A" stroke-width="1.5" fill="none"/>
+
+  <!-- sparkles -->
+  <g transform="translate(300,153)"><line x1="-6" y1="0" x2="6" y2="0" stroke="#E9C46A" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="-6" x2="0" y2="6" stroke="#E9C46A" stroke-width="1.5" stroke-linecap="round"/><line x1="-4" y1="-4" x2="4" y2="4" stroke="#E9C46A" stroke-width="1" stroke-linecap="round"/><line x1="4" y1="-4" x2="-4" y2="4" stroke="#E9C46A" stroke-width="1" stroke-linecap="round"/></g>
+  <g transform="translate(220,160)"><line x1="-5" y1="0" x2="5" y2="0" stroke="#E9C46A" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="-5" x2="0" y2="5" stroke="#E9C46A" stroke-width="1.5" stroke-linecap="round"/></g>
+  <g transform="translate(380,158)"><line x1="-5" y1="0" x2="5" y2="0" stroke="#E9C46A" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="-5" x2="0" y2="5" stroke="#E9C46A" stroke-width="1.5" stroke-linecap="round"/></g>
+
+  <text x="300" y="396" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="#A3B18A" opacity=".55" letter-spacing="3">HBT STUDIO</text>
+</svg>
