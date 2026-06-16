@@ -6,6 +6,7 @@ import Services from "./pages/Services";
 import Portfolio from "./pages/Portfolio";
 import AlbumDetail from "./pages/AlbumDetail";
 import Contact from "./pages/Contact";
+import ServiceDetail from "./pages/ServiceDetail";
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +16,7 @@ export const router = createBrowserRouter([
       { index: true,                   Component: Home },
       { path: "about",                 Component: About },
       { path: "services",              Component: Services },
+      { path: "services/:slug",        Component: ServiceDetail },
       { path: "portfolio",             Component: Portfolio },
       { path: "portfolio/:slug",       Component: AlbumDetail },
       { path: "contact",               Component: Contact },

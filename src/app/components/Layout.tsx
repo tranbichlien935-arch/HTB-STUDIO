@@ -19,7 +19,7 @@ export default function Layout() {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const isHome = location.pathname === "/" || location.pathname.startsWith("/portfolio/");
+  const isHome = location.pathname === "/" || location.pathname.startsWith("/portfolio/") || location.pathname.startsWith("/services/");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);

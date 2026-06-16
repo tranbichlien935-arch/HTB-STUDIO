@@ -22,17 +22,164 @@ export const C = {
 };
 
 // ── Data
-export const SERVICES = [
-  { name: "Chụp Ảnh Cưới",        price: "3.000.000đ", emoji: "💍", desc: "Gói chụp ảnh cưới ngoại cảnh cơ bản, chỉnh sửa 30 ảnh.",                                   img: "" },
-  { name: "Quay Phóng Sự",         price: "5.000.000đ", emoji: "🎬", desc: "Quay và dựng video highlight sự kiện, cưới hỏi.",                                            img: "" },
-  { name: "Cho Thuê Studio",        price: "500.000đ",   emoji: "🌿", desc: "Thuê studio đầy đủ ánh sáng, phông nền theo giờ.",                                           img: "" },
-  { name: "Chụp Ảnh Doanh Nghiệp", price: "2.000.000đ", emoji: "💼", desc: "Chụp profile công ty, nhân sự, sự kiện doanh nghiệp.",                                       img: "" },
-  { name: "Chụp Ảnh Sản Phẩm",     price: "2.500.000đ", emoji: "📸", desc: "Chụp sản phẩm thương mại điện tử, menu, quảng cáo.",                                         img: "" },
-  { name: "Make Up",                price: "800.000đ",   emoji: "✨", desc: "Trang điểm chuyên nghiệp cho buổi chụp ảnh.",                                                img: "" },
-  { name: "Cho Thuê Trang Phục",    price: "200.000đ",   emoji: "👗", desc: "Thuê váy cưới, vest hoặc trang phục concept.",                                               img: "" },
-  { name: "Flycam",                 price: "1.500.000đ", emoji: "🚁", desc: "Quay flycam bổ sung cho bộ ảnh hoặc video.",                                                 img: "" },
-  { name: "In Ảnh",                 price: "20.000đ",    emoji: "🖼️", desc: "In ảnh chất lượng cao theo kích thước yêu cầu.",                                             img: "" },
-  { name: "Chỉnh Ảnh",             price: "50.000đ",    emoji: "🎨", desc: "Chỉnh màu, retouch và xuất ảnh chất lượng cao.",                                             img: "" },
+export interface ServiceDetail {
+  slug: string;
+  name: string;
+  price: string;
+  emoji: string;
+  desc: string;
+  img: string;
+  duration: string;
+  category: string;
+  fullDesc: string;
+  includes: string[];
+  process: { no: string; title: string; desc: string }[];
+  hero: string;
+  detailImg?: string;
+}
+
+export const SERVICES: ServiceDetail[] = [
+  {
+    slug: "chup-anh-cuoi",
+    name: "Chụp Ảnh Cưới", price: "3.000.000đ", emoji: "💍",
+    desc: "Gói chụp ảnh cưới ngoại cảnh cơ bản, chỉnh sửa 30 ảnh.",
+    img: "https://weddingboutiquephuket.com/wp-content/uploads/2024/05/Wedding-Boutique-Phuket_KYTRISTAN_WEB_047.jpg", hero: "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1400&h=600&fit=crop&auto=format",
+    duration: "1 giờ", category: "Chụp Ảnh",
+    detailImg: "https://weddingboutiquephuket.com/wp-content/uploads/2024/05/Wedding-Boutique-Phuket_KYTRISTAN_WEB_047.jpg",
+    fullDesc: "Gói chụp ảnh cưới ngoại cảnh cơ bản của HBT Studio mang đến những khoảnh khắc thiêng liêng nhất trong ngày trọng đại của bạn. Chúng tôi lựa chọn góc chụp, ánh sáng và bố cục để tôn vinh vẻ đẹp tự nhiên của cặp đôi.",
+    includes: ["30 ảnh chỉnh sửa chất lượng cao", "1 nhiếp ảnh gia chuyên nghiệp", "Tư vấn concept & địa điểm miễn phí", "Giao ảnh qua link tải trong 7 ngày"],
+    process: [
+      { no: "01", title: "Tư vấn concept", desc: "Trao đổi nhu cầu, phong cách và ý tưởng phù hợp với khách hàng." },
+      { no: "02", title: "Chuẩn bị buổi chụp", desc: "Sắp xếp thời gian, địa điểm, trang phục và các chi tiết cần thiết." },
+      { no: "03", title: "Chụp và chỉnh ảnh", desc: "Thực hiện buổi chụp, chọn ảnh và chỉnh sửa theo phong cách đã thống nhất." },
+    ],
+  },
+  {
+    slug: "quay-phong-su",
+    name: "Quay Phóng Sự", price: "5.000.000đ", emoji: "🎬",
+    desc: "Quay và dựng video highlight sự kiện, cưới hỏi.",
+    img: "", hero: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1400&h=600&fit=crop&auto=format",
+    duration: "Cả ngày", category: "Quay Phim",
+    fullDesc: "Dịch vụ quay phóng sự của HBT Studio ghi lại trọn vẹn không khí của ngày cưới từ sáng đến tối. Video highlight được dựng chuyên nghiệp, phối nhạc tinh tế, trở thành kỷ niệm đáng trân trọng cho cả gia đình.",
+    includes: ["Quay full ngày sự kiện", "Video highlight 5–7 phút", "Dựng phim chuyên nghiệp có nhạc nền", "Xuất file Full HD, giao trong 14 ngày"],
+    process: [
+      { no: "01", title: "Trao đổi kịch bản", desc: "Nắm bắt timeline, địa điểm và phong cách video mong muốn." },
+      { no: "02", title: "Quay ngày sự kiện", desc: "Ekip quay đầy đủ các khoảnh khắc quan trọng trong ngày." },
+      { no: "03", title: "Dựng & giao phim", desc: "Chỉnh màu, phối nhạc và dựng video theo phong cách thống nhất." },
+    ],
+  },
+  {
+    slug: "cho-thue-studio",
+    name: "Cho Thuê Studio", price: "500.000đ", emoji: "🌿",
+    desc: "Thuê studio đầy đủ ánh sáng, phông nền theo giờ.",
+    img: "", hero: "https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=1400&h=600&fit=crop&auto=format",
+    duration: "1 giờ/lần", category: "Studio",
+    fullDesc: "Studio HBT được trang bị đầy đủ hệ thống đèn studio chuyên nghiệp, đa dạng phông nền và props. Không gian thoáng đãng, phù hợp cho chụp cá nhân, nhóm, sản phẩm hay thương hiệu cá nhân.",
+    includes: ["Không gian studio 40m²", "Hệ thống đèn studio đầy đủ", "Nhiều lựa chọn phông nền", "Props & phụ kiện hỗ trợ"],
+    process: [
+      { no: "01", title: "Đặt lịch trước", desc: "Chọn ngày giờ và phông nền phù hợp với concept." },
+      { no: "02", title: "Check-in & setup", desc: "Ekip hỗ trợ setup đèn, phông theo yêu cầu trước buổi chụp." },
+      { no: "03", title: "Tự do sáng tạo", desc: "Tận hưởng không gian và thỏa sức thể hiện phong cách riêng." },
+    ],
+  },
+  {
+    slug: "chup-anh-doanh-nghiep",
+    name: "Chụp Ảnh Doanh Nghiệp", price: "2.000.000đ", emoji: "💼",
+    desc: "Chụp profile công ty, nhân sự, sự kiện doanh nghiệp.",
+    img: "", hero: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1400&h=600&fit=crop&auto=format",
+    duration: "2 giờ", category: "Doanh Nghiệp",
+    fullDesc: "Bộ ảnh doanh nghiệp chuyên nghiệp giúp thương hiệu của bạn tạo ấn tượng mạnh với khách hàng và đối tác. HBT Studio cung cấp dịch vụ chụp ảnh profile, headshot nhân sự và phóng sự sự kiện công ty.",
+    includes: ["50 ảnh chỉnh sửa chất lượng cao", "Chụp tại studio hoặc văn phòng", "Tư vấn phong cách & trang phục", "Giao ảnh trong 7 ngày"],
+    process: [
+      { no: "01", title: "Briefing thương hiệu", desc: "Tìm hiểu phong cách, màu sắc và thông điệp thương hiệu." },
+      { no: "02", title: "Chụp tại địa điểm", desc: "Di chuyển đến văn phòng hoặc studio để thực hiện buổi chụp." },
+      { no: "03", title: "Chỉnh sửa & bàn giao", desc: "Chỉnh màu đồng bộ, retouch và giao file theo định dạng yêu cầu." },
+    ],
+  },
+  {
+    slug: "chup-anh-san-pham",
+    name: "Chụp Ảnh Sản Phẩm", price: "2.500.000đ", emoji: "📸",
+    desc: "Chụp sản phẩm thương mại điện tử, menu, quảng cáo.",
+    img: "", hero: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1400&h=600&fit=crop&auto=format",
+    duration: "2–3 giờ", category: "Sản Phẩm",
+    fullDesc: "Ảnh sản phẩm đẹp là chìa khóa tăng doanh số. HBT Studio chụp ảnh sản phẩm với ánh sáng chuẩn, bố cục đẹp mắt phù hợp cho Shopee, website, menu nhà hàng và quảng cáo mạng xã hội.",
+    includes: ["20 ảnh/sản phẩm chỉnh sửa hoàn chỉnh", "Nền trắng và nền cảnh (lifestyle)", "Tư vấn sắp xếp & props", "File xuất nhiều kích thước"],
+    process: [
+      { no: "01", title: "Nhận sản phẩm & lên kế hoạch", desc: "Xem xét sản phẩm, thống nhất phong cách và bố cục chụp." },
+      { no: "02", title: "Setup & chụp", desc: "Sắp xếp props, ánh sáng và thực hiện chụp theo từng góc." },
+      { no: "03", title: "Chỉnh sửa & giao file", desc: "Retouch màu sắc, loại bỏ khuyết điểm và giao ảnh đúng hạn." },
+    ],
+  },
+  {
+    slug: "make-up",
+    name: "Make Up", price: "800.000đ", emoji: "✨",
+    desc: "Trang điểm chuyên nghiệp cho buổi chụp ảnh.",
+    img: "", hero: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1400&h=600&fit=crop&auto=format",
+    duration: "45–60 phút", category: "Làm Đẹp",
+    fullDesc: "Đội ngũ make up artist của HBT Studio được đào tạo bài bản, am hiểu ánh sáng studio để tạo lớp trang điểm hoàn hảo trước ống kính. Phong cách đa dạng từ tự nhiên, nhẹ nhàng đến ấn tượng theo yêu cầu.",
+    includes: ["Trang điểm mặt hoàn chỉnh", "Tư vấn phong cách phù hợp", "Dụng cụ & mỹ phẩm cao cấp", "Chỉnh sửa trong suốt buổi chụp"],
+    process: [
+      { no: "01", title: "Tư vấn phong cách", desc: "Trao đổi về concept, trang phục để chọn kiểu make up phù hợp." },
+      { no: "02", title: "Trang điểm", desc: "Thực hiện make up tỉ mỉ, đảm bảo đẹp tự nhiên trước ống kính." },
+      { no: "03", title: "Hỗ trợ xuyên suốt", desc: "Touch up và chỉnh sửa liên tục trong quá trình chụp ảnh." },
+    ],
+  },
+  {
+    slug: "cho-thue-trang-phuc",
+    name: "Cho Thuê Trang Phục", price: "200.000đ", emoji: "👗",
+    desc: "Thuê váy cưới, vest hoặc trang phục concept.",
+    img: "", hero: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1400&h=600&fit=crop&auto=format",
+    duration: "Theo buổi chụp", category: "Trang Phục",
+    fullDesc: "Kho trang phục đa dạng của HBT Studio gồm váy cưới, áo dài, vest, trang phục concept Hàn Quốc, vintage và nhiều phong cách khác. Phù hợp cho mọi loại buổi chụp từ cá nhân đến nhóm.",
+    includes: ["Váy cưới, áo dài, vest đa dạng", "Phụ kiện đi kèm (khăn, vương miện...)", "Hỗ trợ mặc trang phục", "Thay trang phục không giới hạn trong buổi chụp"],
+    process: [
+      { no: "01", title: "Chọn trang phục", desc: "Xem kho và chọn trang phục phù hợp với concept trước ngày chụp." },
+      { no: "02", title: "Thử & điều chỉnh", desc: "Thử trang phục trước buổi chụp, điều chỉnh size nếu cần." },
+      { no: "03", title: "Sử dụng & hoàn trả", desc: "Mặc thoải mái trong buổi chụp và hoàn trả sau khi kết thúc." },
+    ],
+  },
+  {
+    slug: "flycam",
+    name: "Flycam", price: "1.500.000đ", emoji: "🚁",
+    desc: "Quay flycam bổ sung cho bộ ảnh hoặc video.",
+    img: "", hero: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=1400&h=600&fit=crop&auto=format",
+    duration: "30 phút bay", category: "Flycam",
+    fullDesc: "Góc nhìn từ trên cao tạo nên những khung hình ấn tượng và độc đáo cho bộ ảnh hay video của bạn. HBT Studio sử dụng flycam chuyên nghiệp, pilot có kinh nghiệm, đảm bảo an toàn tuyệt đối.",
+    includes: ["30 phút bay flycam", "Ảnh/video từ góc nhìn máy bay", "Pilot chuyên nghiệp có giấy phép", "Kết hợp được với mọi gói dịch vụ"],
+    process: [
+      { no: "01", title: "Khảo sát địa điểm", desc: "Đánh giá không gian bay, kiểm tra quy định và thời tiết." },
+      { no: "02", title: "Bay & ghi hình", desc: "Thực hiện các cảnh quay theo kế hoạch đã thống nhất." },
+      { no: "03", title: "Xuất footage", desc: "Giao file raw hoặc dựng ghép vào video chính theo yêu cầu." },
+    ],
+  },
+  {
+    slug: "in-anh",
+    name: "In Ảnh", price: "20.000đ", emoji: "🖼️",
+    desc: "In ảnh chất lượng cao theo kích thước yêu cầu.",
+    img: "", hero: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&h=600&fit=crop&auto=format",
+    duration: "1–3 ngày", category: "In Ấn",
+    fullDesc: "Dịch vụ in ảnh của HBT Studio sử dụng máy in chuyên nghiệp với mực in cao cấp, giấy ảnh bền màu theo thời gian. Hỗ trợ đa dạng kích thước từ 10×15 đến poster khổ lớn.",
+    includes: ["In trên giấy ảnh cao cấp", "Màu sắc trung thực, bền lâu", "Đa dạng kích thước theo yêu cầu", "Đóng gói cẩn thận trước khi giao"],
+    process: [
+      { no: "01", title: "Gửi file ảnh", desc: "Gửi file ảnh đã chỉnh sửa, xác nhận kích thước và số lượng." },
+      { no: "02", title: "In & kiểm tra", desc: "Thực hiện in, kiểm tra màu sắc và chất lượng từng tấm." },
+      { no: "03", title: "Đóng gói & giao", desc: "Đóng gói bảo vệ, giao tận nơi hoặc nhận tại studio." },
+    ],
+  },
+  {
+    slug: "chinh-anh",
+    name: "Chỉnh Ảnh", price: "50.000đ", emoji: "🎨",
+    desc: "Chỉnh màu, retouch và xuất ảnh chất lượng cao.",
+    img: "", hero: "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=1400&h=600&fit=crop&auto=format",
+    duration: "1–2 ngày/ảnh", category: "Hậu Kỳ",
+    fullDesc: "Dịch vụ chỉnh ảnh chuyên nghiệp của HBT Studio bao gồm chỉnh màu (color grading), làm mịn da, xử lý background và tối ưu ánh sáng. Phù hợp cho cá nhân lẫn doanh nghiệp cần ảnh đẹp nhanh.",
+    includes: ["Chỉnh màu & tone theo yêu cầu", "Retouch da, xử lý khuyết điểm", "Tách/thay background nếu cần", "Xuất file JPG/PNG chất lượng cao"],
+    process: [
+      { no: "01", title: "Nhận file & yêu cầu", desc: "Nhận ảnh gốc và trao đổi về tone màu, phong cách mong muốn." },
+      { no: "02", title: "Chỉnh sửa", desc: "Thực hiện retouch và color grading theo đúng yêu cầu." },
+      { no: "03", title: "Gửi bản xem trước", desc: "Gửi bản preview để khách duyệt, chỉnh sửa nếu cần trước khi xuất file." },
+    ],
+  },
 ];
 
 export interface AlbumItem {
@@ -314,7 +461,7 @@ export function StatCard({ target, suffix, label, icon, delay }: { target: numbe
   );
 }
 
-export function ServiceCard({ s, onBook }: { s: typeof SERVICES[0]; onBook: () => void }) {
+export function ServiceCard({ s, onBook, onDetail }: { s: ServiceDetail; onBook: () => void; onDetail?: () => void }) {
   return (
     <div
       className="group rounded-2xl border overflow-hidden cursor-pointer"
@@ -352,9 +499,16 @@ export function ServiceCard({ s, onBook }: { s: typeof SERVICES[0]; onBook: () =
         <p className="text-sm leading-relaxed mb-5" style={{ color: C.sageMain }}>{s.desc}</p>
         <div className="flex items-center justify-between">
           <span className="font-bold text-lg" style={{ color: C.peach }}>{s.price}</span>
-          <button onClick={onBook} className="text-xs font-semibold flex items-center gap-1 px-3 py-1.5 rounded-full transition-all duration-300 hover:scale-105" style={{ background: C.sageLight, color: C.forest }}>
-            Đặt lịch <ArrowRight size={11} />
-          </button>
+          <div className="flex items-center gap-2">
+            {onDetail && (
+              <button onClick={onDetail} className="text-xs font-semibold flex items-center gap-1 px-3 py-1.5 rounded-full transition-all duration-300 hover:scale-105" style={{ background: C.sageLight, color: C.forest }}>
+                Chi tiết <ArrowRight size={11} />
+              </button>
+            )}
+            <button onClick={onBook} className="text-xs font-semibold flex items-center gap-1 px-3 py-1.5 rounded-full transition-all duration-300 hover:scale-105" style={{ background: C.peach, color: C.white }}>
+              Đặt lịch
+            </button>
+          </div>
         </div>
       </div>
     </div>

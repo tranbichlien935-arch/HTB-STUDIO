@@ -38,7 +38,7 @@ export default function Services() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
             {MAIN_SERVICES.map((s, i) => (
               <FadeUp key={s.name} delay={i * 0.07}>
-                <ServiceCard s={s} onBook={() => navigate("/contact")} />
+                <ServiceCard s={s} onBook={() => navigate("/contact")} onDetail={() => navigate(`/services/${s.slug}`)} />
               </FadeUp>
             ))}
           </div>
