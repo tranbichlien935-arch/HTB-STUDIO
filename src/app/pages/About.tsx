@@ -21,7 +21,7 @@ export default function About() {
     <div style={{ background: C.bg }}>
       <div className="pt-20">
         <SectionBanner
-          img="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1400&h=500&fit=crop&auto=format"
+          img="https://images.pexels.com/photos/37902252/pexels-photo-37902252.jpeg"
           title="Về Chúng Tôi"
           subtitle="HBT Studio"
           align="left"
@@ -174,7 +174,7 @@ export default function About() {
                   {[
                     { icon: <MapPin size={16} color={C.peach} />, label: "Địa chỉ", value: "236B Lê Văn Sỹ, Quận 3, TP.HCM" },
                     { icon: <Phone size={16} color={C.peach} />, label: "Hotline", value: "0385 711 415" },
-                    { icon: <Mail size={16} color={C.peach} />, label: "Email", value: "studio@hbtstudio.vn" },
+                    { icon: <Mail size={16} color={C.peach} />, label: "Email", value: "huynhbaotran@gmail.com" },
                     { icon: <Clock size={16} color={C.peach} />, label: "Giờ hoạt động", value: "8:00 – 20:00, Thứ 2 – Chủ nhật" },
                   ].map(item => (
                     <div key={item.label} className="flex items-start gap-3">

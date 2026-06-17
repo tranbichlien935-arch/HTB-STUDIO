@@ -7,7 +7,7 @@ export default function Contact() {
     <div style={{ background: C.sageLight }}>
       <div className="pt-20">
         <SectionBanner
-          img="https://images.unsplash.com/photo-1464746133101-a2c3f88e0dd9?w=1400&h=500&fit=crop&auto=format"
+          img="https://images.pexels.com/photos/37902252/pexels-photo-37902252.jpeg"
           title="Liên Hệ & Đặt Lịch"
           subtitle="Kết nối với chúng tôi"
           align="left"
@@ -32,10 +32,10 @@ export default function Contact() {
               <div>
                 <div className="grid gap-4 mb-8">
                   {[
-                    { icon: <MapPin size={18} color={C.peach} />, label: "Địa chỉ",       value: "236B Lê Văn Sỹ, Quận 3, TP.HCM" },
-                    { icon: <Phone size={18} color={C.peach} />, label: "Hotline",         value: "0385 711 415" },
-                    { icon: <Mail  size={18} color={C.peach} />, label: "Email",           value: "studio@hbtstudio.vn" },
-                    { icon: <Clock size={18} color={C.peach} />, label: "Giờ làm việc",    value: "8:00 – 20:00 (Thứ 2 – Chủ nhật)" },
+                    { icon: <MapPin size={18} color={C.peach} />, label: "Địa chỉ", value: "236B Lê Văn Sỹ, Quận 3, TP.HCM" },
+                    { icon: <Phone size={18} color={C.peach} />, label: "Hotline", value: "0385 711 415" },
+                    { icon: <Mail size={18} color={C.peach} />, label: "Email", value: "huynhbaotran@gmail.com" },
+                    { icon: <Clock size={18} color={C.peach} />, label: "Giờ làm việc", value: "8:00 – 20:00 (Thứ 2 – Chủ nhật)" },
                   ].map((item) => (
                     <div key={item.label} className="flex items-start gap-4 p-5 rounded-xl" style={{ background: C.white, border: `1px solid ${C.sageMain}20` }}>
                       <div className="mt-0.5 shrink-0">{item.icon}</div>
@@ -60,7 +60,7 @@ export default function Contact() {
                   {[
                     { icon: <Instagram size={18} />, label: "Instagram" },
                     { icon: <Facebook size={18} />, label: "Facebook" },
-                    { icon: <Youtube  size={18} />, label: "YouTube" },
+                    { icon: <Youtube size={18} />, label: "YouTube" },
                   ].map((s) => (
                     <button key={s.label} aria-label={s.label}
                       className="w-10 h-10 border-2 rounded-full flex items-center justify-center transition-all duration-300"
@@ -85,7 +85,7 @@ export default function Contact() {
                       className="w-full px-4 py-3.5 text-sm rounded-xl border-2 focus:outline-none transition-all duration-300"
                       style={{ borderColor: C.sageLight, background: C.white, color: C.forest }}
                       onFocus={(e) => (e.currentTarget.style.borderColor = C.sageMain)}
-                      onBlur={(e)  => (e.currentTarget.style.borderColor = C.sageLight)}
+                      onBlur={(e) => (e.currentTarget.style.borderColor = C.sageLight)}
                     />
                   ))}
                 </div>
@@ -93,7 +93,7 @@ export default function Contact() {
                   className="w-full px-4 py-3.5 text-sm rounded-xl border-2 focus:outline-none transition-all duration-300 cursor-pointer"
                   style={{ borderColor: C.sageLight, background: C.white, color: C.forestMid }}
                   onFocus={(e) => (e.currentTarget.style.borderColor = C.sageMain)}
-                  onBlur={(e)  => (e.currentTarget.style.borderColor = C.sageLight)}
+                  onBlur={(e) => (e.currentTarget.style.borderColor = C.sageLight)}
                 >
                   <option value="">Chọn dịch vụ</option>
                   {SERVICES.map((s) => <option key={s.name} value={s.name}>{s.name} — {s.price}</option>)}
@@ -102,13 +102,13 @@ export default function Contact() {
                   className="w-full px-4 py-3.5 text-sm rounded-xl border-2 focus:outline-none transition-all duration-300"
                   style={{ borderColor: C.sageLight, background: C.white, color: C.forestMid }}
                   onFocus={(e) => (e.currentTarget.style.borderColor = C.sageMain)}
-                  onBlur={(e)  => (e.currentTarget.style.borderColor = C.sageLight)}
+                  onBlur={(e) => (e.currentTarget.style.borderColor = C.sageLight)}
                 />
                 <textarea rows={4} placeholder="Ghi chú thêm về yêu cầu của bạn..."
                   className="w-full px-4 py-3.5 text-sm rounded-xl border-2 focus:outline-none transition-all duration-300 resize-none"
                   style={{ borderColor: C.sageLight, background: C.white, color: C.forest }}
                   onFocus={(e) => (e.currentTarget.style.borderColor = C.sageMain)}
-                  onBlur={(e)  => (e.currentTarget.style.borderColor = C.sageLight)}
+                  onBlur={(e) => (e.currentTarget.style.borderColor = C.sageLight)}
                 />
                 <button type="submit"
                   className="group flex items-center justify-center gap-2 py-4 rounded-full font-semibold text-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"

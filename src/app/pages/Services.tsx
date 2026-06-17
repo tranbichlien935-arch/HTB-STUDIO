@@ -9,7 +9,7 @@ export default function Services() {
     <div style={{ background: C.bg }}>
       <div className="pt-20">
         <SectionBanner
-          img="https://images.unsplash.com/photo-1511285560929-80b456503681?w=1400&h=500&fit=crop&auto=format"
+          img="https://images.pexels.com/photos/37902252/pexels-photo-37902252.jpeg"
           title="Dịch Vụ"
           subtitle="Gói chụp ảnh"
           align="center"

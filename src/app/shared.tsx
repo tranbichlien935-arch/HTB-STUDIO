@@ -202,12 +202,10 @@ export const PORTFOLIO: AlbumItem[] = [
     concept: "Thiên nhiên · Hoa lá · Tự nhiên",
     desc: "Bộ ảnh Hoa Xinh được thực hiện giữa khung cảnh thiên nhiên tươi mát, nơi từng bông hoa trở thành người bạn đồng hành dịu dàng. Chúng tôi chọn ánh sáng buổi chiều vàng để tôn lên vẻ đẹp trong sáng, nhẹ nhàng của nhân vật.",
     photos: [
-      hoaXinhImg,
-      "https://images.unsplash.com/photo-1487530811015-780780490d18?w=800&h=1000&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&h=1000&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1516726817505-f5ed825624d8?w=800&h=600&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&h=600&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&h=1000&fit=crop&auto=format",
+      "https://images.pexels.com/photos/31484891/pexels-photo-31484891.jpeg",
+      "https://images.pexels.com/photos/1013479/pexels-photo-1013479.jpeg",
+      "https://images.pexels.com/photos/19533254/pexels-photo-19533254.jpeg",
+      "https://images.pexels.com/photos/31800209/pexels-photo-31800209.jpeg",
     ],
   },
   {
@@ -218,12 +216,10 @@ export const PORTFOLIO: AlbumItem[] = [
     concept: "Hoàng hôn · Lãng mạn · Ngoại cảnh",
     desc: "Hoàng hôn là khoảnh khắc đẹp nhất trong ngày — khi ánh nắng cuối chiều nhuộm vàng tất cả. Bộ ảnh này ghi lại tình yêu của hai người trong ánh sáng dịu dàng đó, nơi mỗi nụ cười, mỗi cái nắm tay đều trở nên lung linh và đáng nhớ mãi.",
     photos: [
-      hoangHonImg,
-      hoangHonRingImg,
-      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&h=1000&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&h=600&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&h=1000&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1510017803434-a899398421b3?w=800&h=600&fit=crop&auto=format",
+      "https://images.pexels.com/photos/27054261/pexels-photo-27054261.jpeg",
+      "https://images.pexels.com/photos/1024996/pexels-photo-1024996.jpeg",
+      "https://images.pexels.com/photos/28822165/pexels-photo-28822165.jpeg",
+      "https://images.pexels.com/photos/34399181/pexels-photo-34399181.jpeg",
     ],
   },
   {
@@ -234,12 +230,10 @@ export const PORTFOLIO: AlbumItem[] = [
     concept: "Gia đình · Ngoại cảnh · Hạnh phúc",
     desc: "Không có gì quý hơn những khoảnh khắc sum vầy bên gia đình. Bộ ảnh Cả Nhà Cùng Vui ghi lại tiếng cười, những cái ôm ấm áp và ánh mắt yêu thương — tất cả hòa quyện trong khung cảnh thiên nhiên tươi xanh, tạo nên một tác phẩm đong đầy cảm xúc.",
     photos: [
-      "https://images.unsplash.com/photo-1760633549227-901e0c3cf9d3?w=800&h=1000&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1511895426328-dc8714191011?w=800&h=600&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1476703993599-0035a21b17a9?w=800&h=1000&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1536640712-4d4c36ff0e4e?w=800&h=600&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1602576907053-e143c69d432d?w=800&h=1000&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1593100126453-19b562a800c1?w=800&h=600&fit=crop&auto=format",
+      "https://images.pexels.com/photos/5859874/pexels-photo-5859874.jpeg",
+      "https://images.pexels.com/photos/8307542/pexels-photo-8307542.jpeg",
+      "https://images.pexels.com/photos/4784018/pexels-photo-4784018.jpeg",
+      "https://images.pexels.com/photos/36305242/pexels-photo-36305242.jpeg",
     ],
   },
   {
@@ -250,12 +244,10 @@ export const PORTFOLIO: AlbumItem[] = [
     concept: "Trẻ trung · Rực rỡ · Kỷ niệm",
     desc: "Tuổi 18 — cột mốc đáng nhớ nhất trong cuộc đời mỗi người. Bộ ảnh được thực hiện với năng lượng tươi trẻ, rực rỡ, ghi lại vẻ đẹp thanh xuân đầy sức sống và những ước mơ đang chờ phía trước.",
     photos: [
-      "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&h=1000&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1487530811015-780780490d18?w=800&h=600&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&h=1000&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1516726817505-f5ed825624d8?w=800&h=600&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&h=1000&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop&auto=format",
+      "https://images.pexels.com/photos/18473632/pexels-photo-18473632.jpeg",
+      "https://images.pexels.com/photos/35688312/pexels-photo-35688312.jpeg",
+      "https://images.pexels.com/photos/28989573/pexels-photo-28989573.jpeg",
+      "https://images.pexels.com/photos/30359901/pexels-photo-30359901.jpeg",
     ],
   },
   {
@@ -266,12 +258,7 @@ export const PORTFOLIO: AlbumItem[] = [
     concept: "Cưới · Hoa · Lãng mạn",
     desc: "Ngày cưới là ngày đẹp nhất trong cuộc đời. Bộ ảnh Marry Me ghi lại trọn vẹn cảm xúc của khoảnh khắc thiêng liêng đó — từ chiếc nhẫn đính hôn long lanh đến nụ hôn đầu tiên của đôi vợ chồng, tất cả đều được lưu giữ trong từng khung hình.",
     photos: [
-      marryMeImg,
-      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&h=600&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&h=1000&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&h=600&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?w=800&h=1000&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1510017803434-a899398421b3?w=800&h=600&fit=crop&auto=format",
+      "https://images.pexels.com/photos/5924661/pexels-photo-5924661.jpeg",
     ],
   },
   {
@@ -286,8 +273,6 @@ export const PORTFOLIO: AlbumItem[] = [
       "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=1000&fit=crop&auto=format",
       "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&h=600&fit=crop&auto=format",
       "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&h=1000&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800&h=600&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800&h=1000&fit=crop&auto=format",
     ],
   },
   {
@@ -318,7 +303,7 @@ export const PORTFOLIO: AlbumItem[] = [
       cotMoc2Img,
       "https://images.pexels.com/photos/28731158/pexels-photo-28731158.jpeg",
       "https://images.unsplash.com/photo-1476703993599-0035a21b17a9?w=800&h=1000&fit=crop&auto=format",
-      "https://images.unsplash.com/photo-1602576907053-e143c69d432d?w=800&h=600&fit=crop&auto=format",
+
     ],
   },
 ];
@@ -464,12 +449,12 @@ export function StatCard({ target, suffix, label, icon, delay }: { target: numbe
 export function ServiceCard({ s, onBook, onDetail }: { s: ServiceDetail; onBook: () => void; onDetail?: () => void }) {
   return (
     <div
-      className="group rounded-2xl border overflow-hidden cursor-pointer"
+      className="group rounded-2xl border overflow-hidden cursor-pointer h-full flex flex-col"
       style={{ borderColor: C.sageLight, background: C.white, transition: "border-color 0.4s, box-shadow 0.4s, transform 0.4s" }}
       onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.borderColor = C.sageMain; el.style.boxShadow = `0 12px 48px rgba(52,78,65,0.12)`; el.style.transform = "translateY(-5px)"; }}
       onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.borderColor = C.sageLight; el.style.boxShadow = "none"; el.style.transform = "translateY(0)"; }}
     >
-      <div className="relative overflow-hidden" style={{ height: 200 }}>
+      <div className="relative overflow-hidden" style={{ height: 200, flexShrink: 0 }}>
         {s.img ? (
           <img src={s.img} alt={s.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
         ) : (
@@ -494,10 +479,10 @@ export function ServiceCard({ s, onBook, onDetail }: { s: ServiceDetail; onBook:
         )}
         <div className="absolute bottom-0 left-0 right-0 h-10 pointer-events-none" style={{ background: "linear-gradient(to top, rgba(255,255,255,0.7), transparent)", backdropFilter: "blur(2px)" }} />
       </div>
-      <div className="p-6">
+      <div className="p-6 flex flex-col flex-grow">
         <h3 className="font-semibold mb-1.5 text-base" style={{ fontFamily: "'Playfair Display', serif", color: C.forest }}>{s.name}</h3>
         <p className="text-sm leading-relaxed mb-5" style={{ color: C.sageMain }}>{s.desc}</p>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mt-auto">
           <span className="font-bold text-lg" style={{ color: C.peach }}>{s.price}</span>
           <div className="flex items-center gap-2">
             {onDetail && (

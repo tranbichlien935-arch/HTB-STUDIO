@@ -101,22 +101,22 @@ export default function AlbumDetail() {
       {/* ── PHOTO GALLERY — masonry */}
       <section className="px-6 pb-24">
         <div className="max-w-7xl mx-auto">
-          <div style={{ columns: "2 300px", gap: 12 }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {album.photos.map((src, i) => (
               <FadeUp key={i} delay={i * 0.07}>
                 <div
                   className="group relative overflow-hidden cursor-zoom-in"
-                  style={{ borderRadius: 12, marginBottom: 12, breakInside: "avoid", background: C.sageLight }}
+                  style={{ borderRadius: 12, background: C.sageLight, aspectRatio: "4/5" }}
                   onClick={() => setLightbox(src)}
                 >
                   <img
                     src={src}
                     alt={`${album.title} ${i + 1}`}
-                    className="w-full object-cover block transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover block transition-transform duration-700 group-hover:scale-105"
                   />
                   {/* hover overlay */}
                   <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-center justify-center"
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-center justify-center pointer-events-none"
                     style={{ background: "rgba(52,78,65,0.35)" }}
                   >
                     <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.2)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.3)" }}>
