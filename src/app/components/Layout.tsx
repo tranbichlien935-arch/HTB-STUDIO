@@ -27,8 +27,20 @@ export default function Layout() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // close mobile menu on route change
-  useEffect(() => { setMenuOpen(false); window.scrollTo(0, 0); }, [location.pathname]);
+  // initialize and refresh AOS
+  useEffect(() => {
+    setMenuOpen(false);
+    window.scrollTo(0, 0);
+    // @ts-ignore
+    if (typeof window !== "undefined" && window.AOS) {
+      // @ts-ignore
+      window.AOS.init({ duration: 1000, once: true, offset: 50 });
+      setTimeout(() => {
+        // @ts-ignore
+        window.AOS.refreshHard();
+      }, 100);
+    }
+  }, [location.pathname]);
 
   const go = (path: string) => {
     if (location.pathname === path) {

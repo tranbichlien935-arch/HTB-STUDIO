@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import { ArrowRight, Leaf, MapPin, Phone, Mail, Clock, Camera, Star, Award } from "lucide-react";
-import { C, FadeUp, BranchDivider, SectionBanner } from "@/app/shared";
+import { C, FadeUp, FadeSlide, BranchDivider, SectionBanner } from "@/app/shared";
 
 const VALUES = [
   { icon: "🌿", title: "Tự nhiên & Chân thực", desc: "Chúng tôi luôn hướng đến sự chân thực trong từng khoảnh khắc, không dàn dựng quá mức mà để cảm xúc tự nhiên tỏa sáng." },
@@ -31,12 +31,12 @@ export default function About() {
       {/* Story */}
       <section className="py-24 px-6">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-          <FadeUp>
+          <FadeSlide direction="left">
             <div className="relative overflow-hidden rounded-2xl" style={{ height: 520, background: C.sageLight }}>
-              <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=700&h=900&fit=crop&auto=format" alt="Studio photographer" className="w-full h-full object-cover" style={{ filter: "brightness(0.88)" }} />
+              <img src="https://images.pexels.com/photos/17893829/pexels-photo-17893829.jpeg" alt="Studio photographer" className="w-full h-full object-cover" style={{ filter: "brightness(0.88)" }} />
             </div>
-          </FadeUp>
-          <FadeUp delay={0.18}>
+          </FadeSlide>
+          <FadeSlide direction="right" delay={0.18}>
             <div>
               <div className="text-xs tracking-widest uppercase mb-3 flex items-center gap-2" style={{ color: C.sageMain }}>
                 <Leaf size={13} color={C.sageMain} /> Câu chuyện của chúng tôi
@@ -54,7 +54,7 @@ export default function About() {
                 Xem dịch vụ của chúng tôi <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
               </button>
             </div>
-          </FadeUp>
+          </FadeSlide>
         </div>
       </section>
 

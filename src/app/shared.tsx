@@ -358,13 +358,17 @@ export function useCountUp(target: number, duration = 1600, trigger: boolean) {
 
 // ── Shared components
 export function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
-  const { ref, visible } = useInView();
   return (
-    <div ref={ref} className={className} style={{
-      opacity: visible ? 1 : 0,
-      transform: visible ? "translateY(0)" : "translateY(28px)",
-      transition: `opacity 0.85s cubic-bezier(.22,1,.36,1) ${delay}s, transform 0.85s cubic-bezier(.22,1,.36,1) ${delay}s`,
-    }}>
+    <div data-aos="fade-up" data-aos-delay={Math.round(delay * 1000)} className={className}>
+      {children}
+    </div>
+  );
+}
+
+export function FadeSlide({ children, delay = 0, direction = "left", className = "" }: { children: React.ReactNode; delay?: number; direction?: "left" | "right"; className?: string }) {
+  const aosAnim = direction === "left" ? "fade-right" : "fade-left";
+  return (
+    <div data-aos={aosAnim} data-aos-delay={Math.round(delay * 1000)} className={className}>
       {children}
     </div>
   );
@@ -424,13 +428,13 @@ export function StatCard({ target, suffix, label, icon, delay }: { target: numbe
   return (
     <div
       ref={ref}
+      data-aos="fade-right"
+      data-aos-delay={Math.round(delay * 1000)}
       className="relative text-center py-10 px-6 rounded-2xl overflow-hidden cursor-default group"
       style={{
         background: "rgba(255,255,255,0.6)",
         border: `1.5px solid ${C.sageLight}`,
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0) scale(1)" : "translateY(36px) scale(0.94)",
-        transition: `opacity 0.7s cubic-bezier(.22,1,.36,1) ${delay}s, transform 0.7s cubic-bezier(.22,1,.36,1) ${delay}s, box-shadow 0.3s, border-color 0.3s`,
+        transition: `box-shadow 0.3s, border-color 0.3s`,
       }}
       onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.boxShadow = `0 12px 40px rgba(52,78,65,0.13)`; el.style.borderColor = C.sageMain; el.style.transform = "translateY(-6px) scale(1.02)"; }}
       onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.boxShadow = "none"; el.style.borderColor = C.sageLight; el.style.transform = "translateY(0) scale(1)"; }}

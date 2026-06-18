@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { ArrowRight, ChevronDown, Leaf } from "lucide-react";
-import { C, SERVICES, PORTFOLIO, STATS, TESTIMONIALS, FadeUp, BranchDivider, StatCard, ServiceCard, PortfolioCard, TestimonialCard } from "@/app/shared";
+import { C, SERVICES, PORTFOLIO, STATS, TESTIMONIALS, FadeUp, FadeSlide, BranchDivider, StatCard, ServiceCard, PortfolioCard, TestimonialCard } from "@/app/shared";
 import slide1 from "@/imports/to-chuc-dam-cuoi-ngoai-troi.jpg";
 
 const HERO_SLIDES = [
@@ -163,12 +163,12 @@ export default function Home() {
         {/* ── ABOUT TEASER */}
         <section className="py-24 px-6 overflow-hidden">
           <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-            <FadeUp>
+            <FadeSlide direction="left">
               <div className="relative overflow-hidden rounded-2xl" style={{ height: 480, background: C.sageLight }}>
-                <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=700&h=900&fit=crop&auto=format" alt="Photographer" className="w-full h-full object-cover" style={{ filter: "brightness(0.88)" }} />
+                <img src="https://images.pexels.com/photos/17893829/pexels-photo-17893829.jpeg" alt="Photographer" className="w-full h-full object-cover" style={{ filter: "brightness(0.88)" }} />
               </div>
-            </FadeUp>
-            <FadeUp delay={0.18}>
+            </FadeSlide>
+            <FadeSlide direction="right" delay={0.18}>
               <div>
                 <div className="text-xs tracking-widest uppercase mb-3 flex items-center gap-2" style={{ color: C.sageMain }}>
                   <Leaf size={13} color={C.sageMain} /> Về chúng tôi
@@ -187,7 +187,7 @@ export default function Home() {
                   Khám phá thêm <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
                 </button>
               </div>
-            </FadeUp>
+            </FadeSlide>
           </div>
         </section>
 
@@ -212,9 +212,9 @@ export default function Home() {
             </FadeUp>
             <div className="grid md:grid-cols-3 gap-6 mt-12">
               {SERVICES.slice(0, 3).map((s, i) => (
-                <FadeUp key={s.name} delay={i * 0.08}>
+                <div key={s.name} data-aos="zoom-in" data-aos-delay={Math.round(i * 100)}>
                   <ServiceCard s={s} onBook={() => navigate("/contact")} onDetail={() => navigate(`/services/${s.slug}`)} />
-                </FadeUp>
+                </div>
               ))}
             </div>
             <FadeUp delay={0.3}>
@@ -241,9 +241,9 @@ export default function Home() {
             </FadeUp>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
               {PORTFOLIO.slice(0, 4).map((p, i) => (
-                <FadeUp key={p.title} delay={i * 0.07}>
+                <div key={p.title} data-aos="zoom-in" data-aos-delay={Math.round(i * 100)}>
                   <PortfolioCard p={p} onClick={() => navigate(`/portfolio/${p.slug}`)} />
-                </FadeUp>
+                </div>
               ))}
             </div>
             <FadeUp delay={0.3}>
