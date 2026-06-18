@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { ArrowRight, ChevronDown, Leaf } from "lucide-react";
-import { C, SERVICES, PORTFOLIO, STATS, TESTIMONIALS, FadeUp, FadeSlide, BranchDivider, StatCard, ServiceCard, PortfolioCard, TestimonialCard } from "@/app/shared";
-import slide1 from "@/imports/to-chuc-dam-cuoi-ngoai-troi.jpg";
+import { C, SERVICES, PORTFOLIO, STATS, TESTIMONIALS, FadeUp, FadeSlide, BranchDivider, StatCard, StatNumber, ServiceCard, PortfolioCard, TestimonialCard } from "../shared";
+import slide1 from "../../imports/to-chuc-dam-cuoi-ngoai-troi.jpg";
 
 const HERO_SLIDES = [
   { src: slide1, alt: "Tổ chức đám cưới ngoài trời" },
@@ -191,10 +191,60 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── STATS */}
-        <section className="py-20 px-6" style={{ background: C.sageLight }}>
-          <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-            {STATS.map((s, i) => <StatCard key={s.label} {...s} delay={i * 0.12} />)}
+        <section className="py-32 px-6 relative overflow-hidden" style={{ background: C.bg }}>
+          {/* Subtle wavy background behind the chart */}
+          <div className="absolute top-1/2 left-0 w-full h-[300px] pointer-events-none -translate-y-1/2 opacity-20">
+            <svg viewBox="0 0 1000 200" preserveAspectRatio="none" className="w-full h-full chart-shimmer-wave">
+              <path d="M0,100 C150,200 350,0 500,100 C650,200 850,0 1000,100 L1000,200 L0,200 Z" fill={C.sageLight} />
+              <path d="M0,50 C200,150 400,-50 600,50 C800,150 950,-50 1000,50 L1000,200 L0,200 Z" fill={C.champagne} opacity="0.3" />
+            </svg>
+          </div>
+
+          <div className="max-w-5xl mx-auto relative z-10 flex flex-col items-center">
+            <div className="text-center mb-16">
+              <span className="text-xs tracking-[0.2em] uppercase font-semibold" style={{ color: C.sageMain }}>Hồ sơ Năng Lực</span>
+              <h2 className="text-3xl md:text-5xl font-bold mt-3" style={{ fontFamily: "'Playfair Display', serif", color: C.forest }}>Sự Lựa Chọn Hoàn Hảo</h2>
+            </div>
+
+            <div className="flex h-[350px] w-full items-end justify-center gap-4 md:gap-16 border-b-2 relative" style={{ borderColor: "rgba(88,129,87,0.15)" }}>
+              {STATS.map((s, i) => {
+                // Fake logical heights for aesthetic chart rendering
+                const heights = ["60%", "40%", "90%", "80%"];
+                return (
+                  <div key={s.label} className="relative group flex flex-col items-center justify-end h-full w-20 md:w-32 cursor-default">
+                    {/* The Chart Number Floating Above */}
+                    <div className="absolute w-max text-center transition-transform duration-700 group-hover:-translate-y-5" style={{ bottom: `calc(${heights[i]} + 20px)` }}>
+                      <div className="font-extrabold text-3xl md:text-5xl" style={{ fontFamily: "'Playfair Display', serif", color: C.forest }}>
+                        <StatNumber target={s.target} />
+                        <span style={{ fontSize: "0.5em", color: C.peach, marginLeft: "2px" }}>{s.suffix}</span>
+                      </div>
+                    </div>
+
+                    {/* The Animated Column */}
+                    <div
+                      data-aos="fade-up"
+                      data-aos-anchor-placement="bottom-bottom"
+                      data-aos-delay={i * 150}
+                      className="w-12 md:w-20 rounded-t-lg transition-all duration-700 ease-out group-hover:opacity-100 group-hover:scale-x-110"
+                      style={{
+                        height: heights[i],
+                        background: `linear-gradient(to top, ${C.sageLight}, ${C.sageMain}88)`,
+                        opacity: 0.8,
+                        boxShadow: "inset 0 2px 10px rgba(255,255,255,0.4), 0 -4px 20px rgba(88,129,87,0.1)"
+                      }}
+                    >
+                      {/* Subtle pattern overlay on column */}
+                      <div className="w-full h-full opacity-20" style={{ background: "repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(255,255,255,0.2) 5px, rgba(255,255,255,0.2) 10px)" }} />
+                    </div>
+
+                    {/* Label below the chart base */}
+                    <div className="absolute -bottom-12 w-max text-center font-medium text-[10px] md:text-xs uppercase tracking-wider transition-all duration-500 group-hover:text-forest" style={{ color: C.forestMid }}>
+                      {s.label}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </section>
 

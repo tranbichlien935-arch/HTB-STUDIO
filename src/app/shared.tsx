@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import Odometer from "react-odometerjs";
+import "odometer/themes/odometer-theme-minimal.css";
 import { ArrowRight, Leaf, Star } from "lucide-react";
 import hoangHonImg from "@/imports/image-21.png";
 import hoangHonRingImg from "@/imports/image-22.png";
@@ -425,34 +427,64 @@ export function SectionBanner({ title, subtitle, img, align = "center" }: {
   );
 }
 
-export function StatCard({ target, suffix, label, icon, delay }: { target: number; suffix: string; label: string; icon: string; delay: number }) {
+export function StatNumber({ target }: { target: number }) {
   const { ref, visible } = useInView(0.3);
-  const count = useCountUp(target, 1600, visible);
   return (
-    <div
-      ref={ref}
-      data-aos="fade-right"
-      data-aos-delay={Math.round(delay * 1000)}
-      className="relative text-center py-10 px-6 rounded-2xl overflow-hidden cursor-default group"
-      style={{
-        background: "rgba(255,255,255,0.6)",
-        border: `1.5px solid ${C.sageLight}`,
-        transition: `box-shadow 0.3s, border-color 0.3s`,
-      }}
-      onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.boxShadow = `0 12px 40px rgba(52,78,65,0.13)`; el.style.borderColor = C.sageMain; el.style.transform = "translateY(-6px) scale(1.02)"; }}
-      onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.boxShadow = "none"; el.style.borderColor = C.sageLight; el.style.transform = "translateY(0) scale(1)"; }}
-    >
-      <div className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: `radial-gradient(circle at 50% 0%, rgba(163,177,138,0.18) 0%, transparent 70%)` }} />
-      <div className="text-2xl mb-3 select-none">{icon}</div>
-      <div className="font-bold leading-none mb-2 tabular-nums" style={{ fontFamily: "'Playfair Display', serif", fontSize: "3.2rem", color: C.forest, lineHeight: 1 }}>
-        {count}{suffix}
-      </div>
-      <div className="mx-auto mb-3 rounded-full" style={{ height: 2, background: `linear-gradient(to right, ${C.peach}, ${C.champagne})`, width: visible ? "40px" : "0px", transition: `width 0.8s cubic-bezier(.22,1,.36,1) ${delay + 0.3}s` }} />
-      <div className="text-sm font-medium" style={{ color: C.forestMid }}>{label}</div>
-    </div>
+    <span ref={ref} style={{ display: "inline-block" }}>
+      <Odometer value={visible ? target : 0} format="(,ddd)" duration={2000} />
+    </span>
   );
 }
 
+export function StatCard({ target, suffix, label, delay }: { target: number; suffix: string; label: string; delay: number }) {
+  const { ref, visible } = useInView(0.3);
+  return (
+    <div
+      ref={ref}
+      data-aos="zoom-in-up"
+      data-aos-delay={Math.round(delay * 1000)}
+      className="relative flex flex-col items-center justify-center text-center p-10 group"
+      style={{
+        background: "rgba(255, 255, 255, 0.6)",
+        backdropFilter: "blur(15px)",
+        WebkitBackdropFilter: "blur(15px)",
+        borderRadius: "30px", /* Apple-style Bento heavily rounded */
+        border: "1px solid rgba(255, 255, 255, 0.5)",
+        boxShadow: "0 10px 30px rgba(0, 0, 0, 0.03)",
+        transition: "all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+        cursor: "default"
+      }}
+      onMouseEnter={(e) => {
+        const el = e.currentTarget as HTMLElement;
+        el.style.transform = "translateY(-10px) scale(1.05)";
+        el.style.boxShadow = "0 20px 40px rgba(0,0,0,0.1)";
+      }}
+      onMouseLeave={(e) => {
+        const el = e.currentTarget as HTMLElement;
+        el.style.transform = "translateY(0) scale(1)";
+        el.style.boxShadow = "0 10px 30px rgba(0, 0, 0, 0.03)";
+      }}
+    >
+      <div
+        className="font-extrabold leading-none mb-3 flex items-baseline justify-center"
+        style={{
+          fontFamily: "'Playfair Display', serif",
+          fontSize: "4rem",
+          color: C.forest,
+        }}
+      >
+        <div style={{ display: "inline-block" }}>
+          <Odometer value={visible ? target : 0} format="(,ddd)" duration={2000} />
+        </div>
+        <span style={{ fontSize: "0.6em", marginLeft: "4px", color: C.peach }}>{suffix}</span>
+      </div>
+
+      <div className="text-sm uppercase tracking-[2px]" style={{ color: C.forestMid, fontWeight: 600 }}>
+        {label}
+      </div>
+    </div>
+  );
+}
 export function ServiceCard({ s, onBook, onDetail }: { s: ServiceDetail; onBook: () => void; onDetail?: () => void }) {
   return (
     <div
@@ -563,11 +595,11 @@ export function TestimonialCard({ t }: { t: typeof TESTIMONIALS[0] }) {
 }
 
 export const globalStyles = `
-  @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-  @keyframes bounce { 0%,100% { transform:translateX(-50%) translateY(0); } 50% { transform:translateX(-50%) translateY(7px); } }
-  @keyframes shimmer { 0% { background-position:-200% center; } 100% { background-position:200% center; } }
-  ::placeholder { color: #A3B18A; }
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: #D4E0D0; border-radius: 2px; }
-`;
+      @keyframes fadeUp {from {opacity:0; transform:translateY(20px); } to {opacity:1; transform:translateY(0); } }
+      @keyframes bounce {0 %, 100 % { transform: translateX(-50 %) translateY(0); } 50% {transform:translateX(-50%) translateY(7px); } }
+      @keyframes shimmer {0 % { background- position:-200% center; } 100% {background - position:200% center; } }
+      ::placeholder {color: #A3B18A; }
+      ::-webkit-scrollbar {width: 4px; }
+      ::-webkit-scrollbar-track {background: transparent; }
+      ::-webkit-scrollbar-thumb {background: #D4E0D0; border-radius: 2px; }
+      `;

@@ -1,0 +1,17 @@
+@keyframes shimmer {
+    0% {
+        transform: translateX(0%) scaleX(1.5);
+    }
+
+    50% {
+        transform: translateX(-5%) scaleX(1.5);
+    }
+
+    100% {
+        transform: translateX(0%) scaleX(1.5);
+    }
+}
+
+.chart-shimmer-wave {
+    animation: shimmer 15s ease-in-out infinite;
+}
