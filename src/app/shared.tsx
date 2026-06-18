@@ -253,12 +253,15 @@ export const PORTFOLIO: AlbumItem[] = [
   {
     slug: "marry-me",
     title: "Marry Me", category: "Cưới",
-    img: marryMeImg,
-    hero: marryMeImg,
+    img: "https://images.pexels.com/photos/37169828/pexels-photo-37169828.jpeg",
+    hero: "https://images.pexels.com/photos/37169828/pexels-photo-37169828.jpeg",
     concept: "Cưới · Hoa · Lãng mạn",
     desc: "Ngày cưới là ngày đẹp nhất trong cuộc đời. Bộ ảnh Marry Me ghi lại trọn vẹn cảm xúc của khoảnh khắc thiêng liêng đó — từ chiếc nhẫn đính hôn long lanh đến nụ hôn đầu tiên của đôi vợ chồng, tất cả đều được lưu giữ trong từng khung hình.",
     photos: [
-      "https://images.pexels.com/photos/5924661/pexels-photo-5924661.jpeg",
+      "https://images.pexels.com/photos/37169828/pexels-photo-37169828.jpeg",
+      "https://images.pexels.com/photos/6023808/pexels-photo-6023808.jpeg",
+      "https://images.pexels.com/photos/25052918/pexels-photo-25052918.jpeg",
+      "https://images.pexels.com/photos/37472845/pexels-photo-37472845.jpeg",
     ],
   },
   {
