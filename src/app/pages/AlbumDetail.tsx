@@ -1,21 +1,73 @@
 import { useParams, useNavigate } from "react-router";
-import { ArrowRight, ArrowLeft, Leaf, X } from "lucide-react";
-import { useState } from "react";
-import { C, PORTFOLIO, FadeUp, BranchDivider } from "@/app/shared";
+import { ArrowRight, ArrowLeft, Leaf, X, Loader2 } from "lucide-react";
+import { useState, useEffect } from "react";
+import { C, PORTFOLIO, FadeUp, BranchDivider, AlbumItem } from "../../app/shared";
 
 export default function AlbumDetail() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const [lightbox, setLightbox] = useState<string | null>(null);
+  const [fetchedAlbum, setFetchedAlbum] = useState<AlbumItem | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const album = PORTFOLIO.find((p) => p.slug === slug);
+  useEffect(() => {
+    const fetchAlbumDetails = async () => {
+      // 1. Check local mock data first
+      let found = PORTFOLIO.find(p => p.slug === slug);
+      if (found) {
+        setFetchedAlbum(found);
+        setLoading(false);
+        return;
+      }
+
+      // 2. Fetch from Firebase if it's dynamic
+      try {
+        const { doc, getDoc } = await import("firebase/firestore");
+        const { db } = await import("../../lib/firebase");
+
+        if (slug) {
+          const docRef = doc(db, "albums", slug);
+          const docSnap = await getDoc(docRef);
+
+          if (docSnap.exists()) {
+            const raw = docSnap.data();
+            setFetchedAlbum({
+              slug: docSnap.id,
+              title: raw.title || "Untitled",
+              category: raw.category || "CÁ NHÂN",
+              img: raw.coverImage || "https://images.pexels.com/photos/1056588/pexels-photo-1056588.jpeg",
+              hero: raw.coverImage || "https://images.pexels.com/photos/1056588/pexels-photo-1056588.jpeg",
+              concept: raw.category || "Nhiếp ảnh",
+              desc: raw.desc || "Những khoảnh khắc tuyệt vời được lưu giữ qua ống kính của HBT Studio. Cùng chiêm ngưỡng những hình ảnh chân thực và đong đầy cảm xúc mà chúng tôi mang lại.",
+              photos: raw.gallery && raw.gallery.length > 0 ? raw.gallery : [raw.coverImage, "https://images.pexels.com/photos/1056588/pexels-photo-1056588.jpeg"]
+            });
+          }
+        }
+      } catch (err) {
+        console.error("Error fetching album detail", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchAlbumDetails();
+  }, [slug]);
+
+  const album = fetchedAlbum;
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center pt-20" style={{ background: C.bg }}>
+        <Loader2 className="animate-spin" size={32} color={C.sageMain} />
+      </div>
+    );
+  }
 
   if (!album) {
     return (
       <div className="min-h-screen flex items-center justify-center pt-20" style={{ background: C.bg }}>
         <div className="text-center">
           <p className="text-lg mb-4" style={{ color: C.sageMain }}>Album không tồn tại.</p>
-          <button onClick={() => navigate("/portfolio")} className="text-sm font-semibold" style={{ color: C.peach }}>
+          <button onClick={() => navigate("/portfolio")} className="text-sm font-semibold hover:underline" style={{ color: C.peach }}>
             ← Quay lại Album
           </button>
         </div>
@@ -24,7 +76,9 @@ export default function AlbumDetail() {
   }
 
   // related albums (same category, excluding current)
-  const related = PORTFOLIO.filter((p) => p.category === album.category && p.slug !== album.slug).slice(0, 3);
+  // Combine PORTFOLIO and the currently fetched album temporarily to show related if any
+  const relatedPool = [...PORTFOLIO, ...(album.slug !== PORTFOLIO[0]?.slug ? [album] : [])];
+  const related = relatedPool.filter((p) => p.category === album.category && p.slug !== album.slug).slice(0, 3);
 
   return (
     <div style={{ background: C.bg }}>

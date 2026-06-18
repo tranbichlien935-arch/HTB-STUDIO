@@ -1,11 +1,80 @@
 import { useParams, useNavigate } from "react-router";
 import { ArrowRight, ArrowLeft, Clock, Tag, Leaf, CheckCircle } from "lucide-react";
-import { C, SERVICES, FadeUp, BranchDivider } from "@/app/shared";
+import { useState, useEffect } from "react";
+import { C, SERVICES, FadeUp, BranchDivider, ServiceDetail as ServiceDetailType } from "@/app/shared";
 
 export default function ServiceDetail() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const service = SERVICES.find((s) => s.slug === slug);
+
+  const [service, setService] = useState<ServiceDetailType | null>(null);
+  const [related, setRelated] = useState<ServiceDetailType[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchService = async () => {
+      try {
+        const { doc, getDoc, collection, getDocs } = await import("firebase/firestore");
+        const { db } = await import("../../lib/firebase");
+
+        let found = null;
+        let relatedList: ServiceDetailType[] = [];
+
+        // Fetch all db ones to match and get related
+        const snapshot = await getDocs(collection(db, "services"));
+        const allDb = snapshot.docs.map(d => {
+          const raw = d.data();
+          return {
+            slug: d.id,
+            name: raw.title || "Dịch vụ",
+            price: raw.price || "Liên hệ",
+            emoji: "✨",
+            desc: raw.description?.substring(0, 50) + "..." || "Dịch vụ cao cấp...",
+            img: raw.coverImage || "https://images.pexels.com/photos/1056588/pexels-photo-1056588.jpeg",
+            hero: raw.coverImage || "https://images.pexels.com/photos/1056588/pexels-photo-1056588.jpeg",
+            duration: "Tuỳ chọn",
+            category: "Dịch vụ",
+            fullDesc: raw.description || "",
+            includes: [],
+            process: [
+              { no: "01", title: "Tư vấn", desc: "Liên hệ và thống nhất ý tưởng." },
+              { no: "02", title: "Thực hiện", desc: "Triển khai dịch vụ." },
+              { no: "03", title: "Bàn giao", desc: "Giao sản phẩm hoàn thiện." }
+            ]
+          } as ServiceDetailType;
+        });
+
+        // Search DB first
+        found = allDb.find(s => s.slug === slug);
+        if (found) {
+          relatedList = allDb.filter(s => s.slug !== slug).slice(0, 3);
+        } else {
+          // Fallback to MOCK
+          found = SERVICES.find(s => s.slug === slug) || null;
+          relatedList = SERVICES.filter(s => s.slug !== slug).slice(0, 3);
+        }
+
+        setService(found);
+        setRelated(relatedList);
+      } catch (error) {
+        console.error(error);
+        const fb = SERVICES.find((s) => s.slug === slug);
+        setService(fb || null);
+        setRelated(SERVICES.filter(s => s.slug !== slug).slice(0, 3));
+      } finally {
+        setLoading(false);
+      }
+    };
+    if (slug) fetchService();
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center pt-20" style={{ background: C.bg }}>
+        <p style={{ color: C.sageMain }}>Đang tải thông tin dịch vụ...</p>
+      </div>
+    );
+  }
 
   if (!service) {
     return (
@@ -17,8 +86,6 @@ export default function ServiceDetail() {
       </div>
     );
   }
-
-  const related = SERVICES.filter((s) => s.slug !== slug).slice(0, 3);
 
   return (
     <div style={{ background: C.bg }}>

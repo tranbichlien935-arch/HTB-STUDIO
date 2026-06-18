@@ -36,6 +36,39 @@ export default function Home() {
   const [prev, setPrev] = useState<number | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
 
+  const [dbServices, setDbServices] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const { collection, getDocs } = await import("firebase/firestore");
+        const { db } = await import("../../lib/firebase");
+        const snapshot = await getDocs(collection(db, "services"));
+        const data = snapshot.docs.map(doc => {
+          const raw = doc.data();
+          return {
+            slug: doc.id,
+            name: raw.title || "Dịch vụ",
+            price: raw.price || "Liên hệ",
+            emoji: "✨",
+            desc: raw.description?.substring(0, 50) + "..." || "Dịch vụ cao cấp...",
+            img: raw.coverImage || "https://images.pexels.com/photos/1056588/pexels-photo-1056588.jpeg",
+            hero: raw.coverImage || "https://images.pexels.com/photos/1056588/pexels-photo-1056588.jpeg",
+            duration: "Tuỳ chọn",
+            category: "Dịch vụ",
+            fullDesc: raw.description || "",
+            includes: [],
+            process: []
+          };
+        });
+        setDbServices(data);
+      } catch (err) { }
+    };
+    fetchServices();
+  }, []);
+
+  const displayServices = [...dbServices, ...SERVICES];
+
   // auto-advance every 5s
   useEffect(() => {
     const t = setInterval(() => {
@@ -261,8 +294,8 @@ export default function Home() {
               <BranchDivider />
             </FadeUp>
             <div className="grid md:grid-cols-3 gap-6 mt-12">
-              {SERVICES.slice(0, 3).map((s, i) => (
-                <div key={s.name} data-aos="zoom-in" data-aos-delay={Math.round(i * 100)}>
+              {displayServices.slice(0, 3).map((s, i) => (
+                <div key={s.slug || s.name} data-aos="zoom-in" data-aos-delay={Math.round(i * 100)}>
                   <ServiceCard s={s} onBook={() => navigate("/contact")} onDetail={() => navigate(`/services/${s.slug}`)} />
                 </div>
               ))}

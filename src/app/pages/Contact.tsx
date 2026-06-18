@@ -1,8 +1,31 @@
 import { Leaf, MapPin, Phone, Mail, Clock, Instagram, Facebook, Youtube } from "lucide-react";
 import { ArrowRight } from "lucide-react";
-import { C, SERVICES, FadeUp, BranchDivider, SectionBanner } from "@/app/shared";
+import { useState, useEffect } from "react";
+import { C, SERVICES, FadeUp, BranchDivider, SectionBanner, PORTFOLIO } from "@/app/shared";
 
 export default function Contact() {
+  const [dbServices, setDbServices] = useState<any[]>([]);
+  const [dbAlbums, setDbAlbums] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { collection, getDocs } = await import("firebase/firestore");
+        const { db } = await import("../../lib/firebase");
+
+        // Fetch services
+        const sSnap = await getDocs(collection(db, "services"));
+        setDbServices(sSnap.docs.map(d => ({ id: d.id, ...d.data() })));
+
+        // Fetch albums
+        const aSnap = await getDocs(collection(db, "albums"));
+        setDbAlbums(aSnap.docs.map(d => ({ id: d.id, ...d.data() })));
+      } catch (err) {
+        console.error("Failed fetching contact dropdown data", err);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <div style={{ background: C.sageLight }}>
       <div className="pt-20">
@@ -77,34 +100,76 @@ export default function Contact() {
             <FadeUp delay={0.15}>
               <form
                 className="flex flex-col gap-4"
-                onSubmit={(e) => { e.preventDefault(); alert("Cảm ơn bạn! Chúng tôi sẽ liên hệ lại sớm nhất."); }}
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  try {
+                    const form = e.target as HTMLFormElement;
+                    const data = {
+                      name: (form.elements.namedItem("name") as HTMLInputElement).value,
+                      phone: (form.elements.namedItem("phone") as HTMLInputElement).value,
+                      service: (form.elements.namedItem("service") as HTMLSelectElement).value,
+                      date: (form.elements.namedItem("date") as HTMLInputElement).value,
+                      notes: (form.elements.namedItem("notes") as HTMLTextAreaElement).value,
+                      status: "pending",
+                      createdAt: new Date().toISOString()
+                    };
+
+                    const { collection, addDoc } = await import("firebase/firestore");
+                    const { db } = await import("../../lib/firebase");
+                    await addDoc(collection(db, "bookings"), data);
+
+                    alert("Cảm ơn bạn! Yêu cầu đặt lịch đã được gửi đến Admin.");
+                    form.reset();
+                  } catch (error) {
+                    console.error("Booking failed", error);
+                    alert("Có lỗi xảy ra, vui lòng thử lại sau.");
+                  }
+                }}
               >
                 <div className="grid sm:grid-cols-2 gap-4">
-                  {["Họ và tên", "Số điện thoại"].map((ph) => (
-                    <input key={ph} placeholder={ph} required
-                      className="w-full px-4 py-3.5 text-sm rounded-xl border-2 focus:outline-none transition-all duration-300"
-                      style={{ borderColor: C.sageLight, background: C.white, color: C.forest }}
-                      onFocus={(e) => (e.currentTarget.style.borderColor = C.sageMain)}
-                      onBlur={(e) => (e.currentTarget.style.borderColor = C.sageLight)}
-                    />
-                  ))}
+                  <input name="name" placeholder="Họ và tên" required
+                    className="w-full px-4 py-3.5 text-sm rounded-xl border-2 focus:outline-none transition-all duration-300"
+                    style={{ borderColor: C.sageLight, background: C.white, color: C.forest }}
+                    onFocus={(e) => (e.currentTarget.style.borderColor = C.sageMain)}
+                    onBlur={(e) => (e.currentTarget.style.borderColor = C.sageLight)}
+                  />
+                  <input name="phone" placeholder="Số điện thoại" required
+                    className="w-full px-4 py-3.5 text-sm rounded-xl border-2 focus:outline-none transition-all duration-300"
+                    style={{ borderColor: C.sageLight, background: C.white, color: C.forest }}
+                    onFocus={(e) => (e.currentTarget.style.borderColor = C.sageMain)}
+                    onBlur={(e) => (e.currentTarget.style.borderColor = C.sageLight)}
+                  />
                 </div>
-                <select required
+                <select name="service" required
                   className="w-full px-4 py-3.5 text-sm rounded-xl border-2 focus:outline-none transition-all duration-300 cursor-pointer"
                   style={{ borderColor: C.sageLight, background: C.white, color: C.forestMid }}
                   onFocus={(e) => (e.currentTarget.style.borderColor = C.sageMain)}
                   onBlur={(e) => (e.currentTarget.style.borderColor = C.sageLight)}
                 >
-                  <option value="">Chọn dịch vụ</option>
-                  {SERVICES.map((s) => <option key={s.name} value={s.name}>{s.name} — {s.price}</option>)}
+                  <option value="">Chọn dịch vụ / phong cách</option>
+
+                  {/* Backup static data if DB is empty */}
+                  {dbServices.length === 0 && SERVICES.map((s) => <option key={s.name} value={`[DỊCH VỤ] ${s.name}`}>{s.name} — {s.price}</option>)}
+
+                  {dbServices.length > 0 && (
+                    <optgroup label="👉 Đặt theo Gói Dịch Vụ">
+                      {dbServices.map(s => <option key={s.id} value={`[DỊCH VỤ] ${s.title}`}>{s.title} — {s.price}</option>)}
+                    </optgroup>
+                  )}
+
+                  <optgroup label="👉 Muốn chụp theo Concept / Album">
+                    {[...dbAlbums, ...PORTFOLIO].map((a, i) => (
+                      <option key={`album-${a.id || a.slug}-${i}`} value={`[ALBUM] ${a.title}`}>Cảm hứng từ: {a.title}</option>
+                    ))}
+                  </optgroup>
                 </select>
-                <input type="date" required
+                <input type="date" name="date" required
                   className="w-full px-4 py-3.5 text-sm rounded-xl border-2 focus:outline-none transition-all duration-300"
                   style={{ borderColor: C.sageLight, background: C.white, color: C.forestMid }}
                   onFocus={(e) => (e.currentTarget.style.borderColor = C.sageMain)}
                   onBlur={(e) => (e.currentTarget.style.borderColor = C.sageLight)}
                 />
-                <textarea rows={4} placeholder="Ghi chú thêm về yêu cầu của bạn..."
+                <textarea rows={4} name="notes" placeholder="Ghi chú thêm về yêu cầu của bạn..."
                   className="w-full px-4 py-3.5 text-sm rounded-xl border-2 focus:outline-none transition-all duration-300 resize-none"
                   style={{ borderColor: C.sageLight, background: C.white, color: C.forest }}
                   onFocus={(e) => (e.currentTarget.style.borderColor = C.sageMain)}

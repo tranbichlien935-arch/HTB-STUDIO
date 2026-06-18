@@ -127,8 +127,57 @@ export default function Portfolio() {
   const navigate = useNavigate();
   const goDetail = (slug: string) => navigate(`/portfolio/${slug}`);
   const [activeFilter, setActiveFilter] = useState("Tất cả");
-  const categories = ["Tất cả", ...Array.from(new Set(PORTFOLIO.map((p) => p.category)))];
-  const filtered = activeFilter === "Tất cả" ? PORTFOLIO : PORTFOLIO.filter((p) => p.category === activeFilter);
+
+  const [dbAlbums, setDbAlbums] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAlbums = async () => {
+      try {
+        const { collection, getDocs } = await import("firebase/firestore");
+        const { db } = await import("../../lib/firebase");
+
+        const snapshot = await getDocs(collection(db, "albums"));
+
+        let data = snapshot.docs.map(doc => {
+          const raw = doc.data();
+
+          let dbCat = raw.category || "Cá nhân";
+          if (dbCat === "CÁ NHÂN") dbCat = "Cá nhân";
+          if (dbCat === "COUPLE") dbCat = "Couple";
+          if (dbCat === "GIA ĐÌNH") dbCat = "Gia đình";
+          if (dbCat === "SỰ KIỆN") dbCat = "Sự kiện";
+
+          // Map firebase fields to Portfolio fields
+          return {
+            id: doc.id,
+            slug: doc.id, // For now use ID as slug
+            title: raw.title || "Untitled",
+            category: dbCat,
+            img: raw.coverImage || "https://images.pexels.com/photos/1056588/pexels-photo-1056588.jpeg",
+            _createdAt: raw.createdAt?.toMillis ? raw.createdAt.toMillis() : Date.now()
+          };
+        });
+
+        // Sort manually directly
+        data = data.sort((a, b) => b._createdAt - a._createdAt);
+
+        setDbAlbums(data);
+      } catch (err) {
+        console.error("Failed to load albums", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchAlbums();
+  }, []);
+
+  // fallback to PORTFOLIO mock data if DB empty but loading finished
+  // actually let's merge them so it looks beautiful with both Real + Mock data!
+  const displayItems = [...dbAlbums, ...PORTFOLIO];
+
+  const categories = ["Tất cả", ...Array.from(new Set(displayItems.map((p) => p.category)))];
+  const filtered = activeFilter === "Tất cả" ? displayItems : displayItems.filter((p) => p.category === activeFilter);
 
   return (
     <div style={{ background: "#EEF4EC" }}>
@@ -172,10 +221,18 @@ export default function Portfolio() {
             </div>
           </FadeUp>
 
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
-            {filtered.map((p, i) => (
-              <div key={p.title} onClick={() => goDetail(p.slug)}>
-                <PhotoCard p={p} delay={i * 0.08} />
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 min-h-[400px]">
+            {loading ? (
+              <div className="col-span-full flex justify-center items-center h-48 text-[#344E41]">
+                Đang tải dữ liệu tác phẩm...
+              </div>
+            ) : filtered.length === 0 ? (
+              <div className="col-span-full flex justify-center items-center h-48 text-[#A3B18A]">
+                Chưa có dữ liệu.
+              </div>
+            ) : filtered.map((p, i) => (
+              <div key={p.id || p.title} onClick={() => goDetail(p.slug)}>
+                <PhotoCard p={p as unknown as AlbumItem} delay={i * 0.08} />
               </div>
             ))}
           </div>

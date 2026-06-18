@@ -1,10 +1,49 @@
 import { useNavigate } from "react-router";
 import { Leaf, ArrowRight } from "lucide-react";
-import { C, SERVICES, FadeUp, BranchDivider, SectionBanner, ServiceCard } from "@/app/shared";
-
+import { useState, useEffect } from "react";
+import { C, SERVICES, FadeUp, BranchDivider, SectionBanner, ServiceCard, ServiceDetail } from "@/app/shared";
 
 export default function Services() {
   const navigate = useNavigate();
+  const [dbServices, setDbServices] = useState<ServiceDetail[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const { collection, getDocs } = await import("firebase/firestore");
+        const { db } = await import("../../lib/firebase");
+        const snapshot = await getDocs(collection(db, "services"));
+        const data = snapshot.docs.map(doc => {
+          const raw = doc.data();
+          return {
+            slug: doc.id,
+            name: raw.title || "Dịch vụ",
+            price: raw.price || "Liên hệ",
+            emoji: "✨",
+            desc: raw.description?.substring(0, 50) + "..." || "Dịch vụ cao cấp...",
+            img: raw.coverImage || "https://images.pexels.com/photos/1056588/pexels-photo-1056588.jpeg",
+            hero: raw.coverImage || "https://images.pexels.com/photos/1056588/pexels-photo-1056588.jpeg",
+            duration: "Tuỳ chọn",
+            category: "Dịch vụ",
+            fullDesc: raw.description || "Hãy trải nghiệm dịch vụ của chúng tôi.",
+            includes: [],
+            process: []
+          } as ServiceDetail;
+        });
+        setDbServices(data);
+      } catch (err) {
+        console.error("Failed to load services", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchServices();
+  }, []);
+
+  // Merge DB services and mock data so all old templates are kept
+  const displayServices = [...dbServices, ...SERVICES];
+
   return (
     <div style={{ background: C.bg }}>
       <div className="pt-20">
@@ -34,11 +73,12 @@ export default function Services() {
           </FadeUp>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-            {SERVICES.map((s, i) => (
-              <FadeUp key={s.name} delay={i * 0.07}>
+            {!loading && displayServices.map((s, i) => (
+              <FadeUp key={s.slug || s.name} delay={i * 0.07}>
                 <ServiceCard s={s} onBook={() => navigate("/contact")} onDetail={() => navigate(`/services/${s.slug}`)} />
               </FadeUp>
             ))}
+            {loading && <div className="col-span-full py-10 text-center text-neutral-400">Đang tải bảng giá...</div>}
           </div>
         </div>
       </section>
