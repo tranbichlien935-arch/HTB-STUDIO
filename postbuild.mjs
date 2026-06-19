@@ -7,7 +7,28 @@ const notFoundPath = path.join(distPath, '404.html');
 
 if (fs.existsSync(indexPath)) {
     fs.copyFileSync(indexPath, notFoundPath);
-    console.log('Successfully copied index.html to 404.html for SPA routing fallback.');
+
+    // Tự động fake các thư mục route để bypass hoàn toàn lỗi Rewrite của Render
+    const routes = [
+        'about',
+        'services',
+        'portfolio',
+        'contact',
+        'admin',
+        'admin/login',
+        'admin/albums',
+        'admin/bookings',
+        'admin/services'
+    ];
+
+    routes.forEach(route => {
+        const routeDir = path.join(distPath, route);
+        fs.mkdirSync(routeDir, { recursive: true });
+        // Copy index.html vào trong từng thư mục
+        fs.copyFileSync(indexPath, path.join(routeDir, 'index.html'));
+    });
+
+    console.log('Successfully generated static route fallbacks!');
 } else {
-    console.log('index.html not found, skipping 404.html creation.');
+    console.log('index.html not found, skipping fallback creation.');
 }
