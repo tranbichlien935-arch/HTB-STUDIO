@@ -1,10 +1,11 @@
-import { Outlet, Link, useNavigate } from "react-router";
+import { Outlet, Link, useNavigate, useLocation } from "react-router";
 import { LayoutDashboard, Images, Users, Calendar, LogOut } from "lucide-react";
 import { signOut } from "firebase/auth";
 import { auth } from "../../../lib/firebase";
 
 export default function AdminLayout() {
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleLogout = async () => {
         await signOut(auth);
@@ -19,18 +20,29 @@ export default function AdminLayout() {
                 </div>
 
                 <nav className="flex-1 px-4 space-y-2">
-                    <Link to="/admin" className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium bg-[#EEF4EC] text-[#344E41]">
-                        <LayoutDashboard size={18} /> Tổng quan
-                    </Link>
-                    <Link to="/admin/albums" className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-neutral-600 hover:bg-neutral-50 hover:text-[#344E41] transition-colors">
-                        <Images size={18} /> Quản lý Album
-                    </Link>
-                    <Link to="/admin/bookings" className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-neutral-600 hover:bg-neutral-50 hover:text-[#344E41] transition-colors">
-                        <Calendar size={18} /> Quản lý Đặt lịch
-                    </Link>
-                    <Link to="/admin/services" className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-neutral-600 hover:bg-neutral-50 hover:text-[#344E41] transition-colors">
-                        <Users size={18} /> Dịch vụ & Gói
-                    </Link>
+                    {[
+                        { to: "/admin", icon: <LayoutDashboard size={18} />, label: "Tổng quan", exact: true },
+                        { to: "/admin/albums", icon: <Images size={18} />, label: "Quản lý Album" },
+                        { to: "/admin/bookings", icon: <Calendar size={18} />, label: "Quản lý Đặt lịch" },
+                        { to: "/admin/services", icon: <Users size={18} />, label: "Dịch vụ & Gói" }
+                    ].map((item) => {
+                        const isActive = item.exact
+                            ? location.pathname === item.to
+                            : location.pathname.startsWith(item.to);
+
+                        return (
+                            <Link
+                                key={item.to}
+                                to={item.to}
+                                className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${isActive
+                                    ? "bg-[#EEF4EC] text-[#344E41]"
+                                    : "text-neutral-600 hover:bg-neutral-50 hover:text-[#344E41]"
+                                    }`}
+                            >
+                                {item.icon} {item.label}
+                            </Link>
+                        );
+                    })}
                 </nav>
 
                 <div className="p-4 border-t border-neutral-100 mb-2">
