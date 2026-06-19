@@ -22,13 +22,20 @@ if (fs.existsSync(indexPath)) {
     ];
 
     routes.forEach(route => {
+        const routeParts = route.split('/');
+
+        // 1. Tạo file [route].html (Ví dụ: dist/admin.html)
+        const htmlFilePath = path.join(distPath, `${route}.html`);
+        fs.mkdirSync(path.dirname(htmlFilePath), { recursive: true });
+        fs.copyFileSync(indexPath, htmlFilePath);
+
+        // 2. Tạo folder [route]/index.html (Ví dụ: dist/admin/index.html)
         const routeDir = path.join(distPath, route);
         fs.mkdirSync(routeDir, { recursive: true });
-        // Copy index.html vào trong từng thư mục
         fs.copyFileSync(indexPath, path.join(routeDir, 'index.html'));
     });
 
-    console.log('Successfully generated static route fallbacks!');
+    console.log('Successfully generated FULL static route fallbacks ([route].html & [route]/index.html)!');
 } else {
     console.log('index.html not found, skipping fallback creation.');
 }
