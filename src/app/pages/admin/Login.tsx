@@ -6,6 +6,7 @@ import { Lock, Mail, Loader2, ArrowLeft } from "lucide-react";
 import { Link } from "react-router";
 
 export default function AdminLogin() {
+    console.log("AdminLogin");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
