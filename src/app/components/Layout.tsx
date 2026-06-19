@@ -184,7 +184,11 @@ export default function Layout() {
           </div>
           <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-2 text-xs" style={{ borderTop: `1px solid rgba(163,177,138,0.2)`, color: C.sageMain }}>
             <span>© 2025 HBT Studio Photography. All rights reserved.</span>
-            <span>Hotline: <span className="text-white font-medium">0385 711 415</span></span>
+            <div className="flex items-center gap-4">
+              <span>Hotline: <span className="text-white font-medium">0385 711 415</span></span>
+              <span className="opacity-30">|</span>
+              <button onClick={() => go("/admin")} className="hover:text-white transition-colors cursor-pointer font-medium uppercase tracking-wider">🔒 Quản trị</button>
+            </div>
           </div>
         </div>
       </footer>
