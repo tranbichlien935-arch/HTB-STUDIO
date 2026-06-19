@@ -1,9 +1,9 @@
 services:
-  - type: web
+  - type: static
     name: htb-studio
-    runtime: node
     buildCommand: npm install && npm run build
-    startCommand: node server.js
-    envVars:
-      - key: NODE_ENV
-        value: production
+    staticPublishPath: ./dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
