@@ -1,4 +1,6 @@
 {
+    "buildCommand": "vite build && node postbuild.mjs",
+    "outputDirectory": "dist",
     "rewrites": [
         {
             "source": "/(.*)",
