@@ -117,6 +117,58 @@ app.post('/api/bookings', async (req, res) => {
     }
 });
 
+// Admin Bookings API
+app.get('/api/admin/bookings', async (req, res) => {
+    try {
+        const pool = await connectDB();
+        const result = await pool.request().query(`
+            SELECT MaLichDat, TenKhachHang, SoDienThoai, NgayDat, YeuCauChuY, TrangThai
+            FROM LichDat
+            ORDER BY MaLichDat DESC
+        `);
+        res.json(result.recordset);
+    } catch (error) {
+        console.error("GET /api/admin/bookings error:", error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.put('/api/admin/bookings/:id/status', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { status } = req.body;
+        const pool = await connectDB();
+
+        let newStatus = "Chờ Xử Lý";
+        if (status === "confirmed") newStatus = "Đã Chốt Lịch";
+        else if (status === "cancelled") newStatus = "Từ Chối";
+
+        await pool.request()
+            .input('MaLichDat', id)
+            .input('TrangThai', newStatus)
+            .query(`UPDATE LichDat SET TrangThai = @TrangThai WHERE MaLichDat = @MaLichDat`);
+
+        res.json({ success: true });
+    } catch (error) {
+        console.error("PUT /api/admin/bookings/:id/status error:", error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.delete('/api/admin/bookings/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const pool = await connectDB();
+        await pool.request()
+            .input('MaLichDat', id)
+            .query(`DELETE FROM LichDat WHERE MaLichDat = @MaLichDat`);
+        res.json({ success: true });
+    } catch (error) {
+        console.error("DELETE /api/admin/bookings/:id error:", error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
 // Serve static files từ thư mục dist
 app.use(express.static(path.join(__dirname, 'dist')));
 

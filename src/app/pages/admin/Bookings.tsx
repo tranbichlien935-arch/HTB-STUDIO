@@ -1,30 +1,45 @@
 import { useState, useEffect } from "react";
 import { Loader2, CheckCircle2, Clock, XCircle, Trash2 } from "lucide-react";
-import { collection, query, orderBy, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
-import { db } from "../../../lib/firebase";
 
 export default function AdminBookings() {
     const [bookings, setBookings] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        // onSnapshot for real-time updates!
-        const q = query(collection(db, "bookings"), orderBy("createdAt", "desc"));
-        const unsubscribe = onSnapshot(q, (querySnapshot) => {
-            const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-            setBookings(data);
+    const fetchBookings = async () => {
+        try {
+            const res = await fetch("/api/admin/bookings");
+            if (!res.ok) throw new Error("Failed");
+            const data = await res.json();
+            // Map MS SQL columns to the UI
+            const mappedData = data.map((b: any) => ({
+                id: b.MaLichDat.toString(),
+                name: b.TenKhachHang,
+                phone: b.SoDienThoai,
+                date: b.NgayDat,
+                service: "Dịch vụ đã chọn", // Simplified, as we put it into notes earlier
+                notes: b.YeuCauChuY,
+                status: b.TrangThai === "Đã Chốt Lịch" ? "confirmed" : b.TrangThai === "Từ Chối" ? "cancelled" : "pending"
+            }));
+            setBookings(mappedData);
+        } catch (error) {
+            console.error("Error fetching bookings: ", error);
+        } finally {
             setLoading(false);
-        }, (error) => {
-            console.error("Error fetching bookings realtime: ", error);
-            setLoading(false);
-        });
+        }
+    };
 
-        return () => unsubscribe();
+    useEffect(() => {
+        fetchBookings();
     }, []);
 
     const handleUpdateStatus = async (id: string, newStatus: string) => {
         try {
-            await updateDoc(doc(db, "bookings", id), { status: newStatus });
+            await fetch(`/api/admin/bookings/${id}/status`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ status: newStatus })
+            });
+            fetchBookings(); // Refresh data
         } catch (err) {
             console.error(err);
             alert("Lỗi khi cập nhật trạng thái!");
@@ -34,7 +49,8 @@ export default function AdminBookings() {
     const handleDelete = async (id: string) => {
         if (confirm("Bạn có chắc chắn muốn xóa lịch đặt này?")) {
             try {
-                await deleteDoc(doc(db, "bookings", id));
+                await fetch(`/api/admin/bookings/${id}`, { method: "DELETE" });
+                fetchBookings(); // Refresh data
             } catch (err) {
                 console.error(err);
                 alert("Lỗi khi xóa!");
