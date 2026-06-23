@@ -186,8 +186,6 @@ export default function Layout() {
             <span>© 2025 HBT Studio Photography. All rights reserved.</span>
             <div className="flex items-center gap-4">
               <span>Hotline: <span className="text-white font-medium">0385 711 415</span></span>
-              <span className="opacity-30">|</span>
-              <button onClick={() => go("/admin")} className="hover:text-white transition-colors cursor-pointer font-medium uppercase tracking-wider">🔒 Quản trị</button>
             </div>
           </div>
         </div>

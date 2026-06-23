@@ -10,16 +10,17 @@ export default function Contact() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { collection, getDocs } = await import("firebase/firestore");
-        const { db } = await import("../../lib/firebase");
+        const sRes = await fetch("/api/services");
+        if (sRes.ok) {
+          const sData = await sRes.json();
+          setDbServices(sData);
+        }
 
-        // Fetch services
-        const sSnap = await getDocs(collection(db, "services"));
-        setDbServices(sSnap.docs.map(d => ({ id: d.id, ...d.data() })));
-
-        // Fetch albums
-        const aSnap = await getDocs(collection(db, "albums"));
-        setDbAlbums(aSnap.docs.map(d => ({ id: d.id, ...d.data() })));
+        const aRes = await fetch("/api/portfolios");
+        if (aRes.ok) {
+          const aData = await aRes.json();
+          setDbAlbums(aData);
+        }
       } catch (err) {
         console.error("Failed fetching contact dropdown data", err);
       }
@@ -110,13 +111,15 @@ export default function Contact() {
                       service: (form.elements.namedItem("service") as HTMLSelectElement).value,
                       date: (form.elements.namedItem("date") as HTMLInputElement).value,
                       notes: (form.elements.namedItem("notes") as HTMLTextAreaElement).value,
-                      status: "pending",
-                      createdAt: new Date().toISOString()
                     };
 
-                    const { collection, addDoc } = await import("firebase/firestore");
-                    const { db } = await import("../../lib/firebase");
-                    await addDoc(collection(db, "bookings"), data);
+                    const res = await fetch("/api/bookings", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify(data)
+                    });
+
+                    if (!res.ok) throw new Error("API request failed");
 
                     alert("Cảm ơn bạn! Yêu cầu đặt lịch đã được gửi đến Admin.");
                     form.reset();
@@ -133,11 +136,14 @@ export default function Contact() {
                     onFocus={(e) => (e.currentTarget.style.borderColor = C.sageMain)}
                     onBlur={(e) => (e.currentTarget.style.borderColor = C.sageLight)}
                   />
-                  <input name="phone" placeholder="Số điện thoại" required
+                  <input type="tel" inputMode="numeric" pattern="[0-9]*" name="phone" placeholder="Số điện thoại" required
                     className="w-full px-4 py-3.5 text-sm rounded-xl border-2 focus:outline-none transition-all duration-300"
                     style={{ borderColor: C.sageLight, background: C.white, color: C.forest }}
                     onFocus={(e) => (e.currentTarget.style.borderColor = C.sageMain)}
                     onBlur={(e) => (e.currentTarget.style.borderColor = C.sageLight)}
+                    onInput={(e) => {
+                      e.currentTarget.value = e.currentTarget.value.replace(/[^0-9]/g, '');
+                    }}
                   />
                 </div>
                 <select name="service" required
@@ -153,22 +159,38 @@ export default function Contact() {
 
                   {dbServices.length > 0 && (
                     <optgroup label="👉 Đặt theo Gói Dịch Vụ">
-                      {dbServices.map(s => <option key={s.id} value={`[DỊCH VỤ] ${s.title}`}>{s.title} — {s.price}</option>)}
+                      {dbServices.map((s: any) => <option key={s.id} value={`[DỊCH VỤ] ${s.name || s.title}`}>{s.name || s.title} — {s.price}</option>)}
                     </optgroup>
                   )}
 
                   <optgroup label="👉 Muốn chụp theo Concept / Album">
-                    {[...dbAlbums, ...PORTFOLIO].map((a, i) => (
+                    {[...dbAlbums, ...PORTFOLIO].map((a: any, i: number) => (
                       <option key={`album-${a.id || a.slug}-${i}`} value={`[ALBUM] ${a.title}`}>Cảm hứng từ: {a.title}</option>
                     ))}
                   </optgroup>
                 </select>
-                <input type="date" name="date" required
-                  className="w-full px-4 py-3.5 text-sm rounded-xl border-2 focus:outline-none transition-all duration-300"
-                  style={{ borderColor: C.sageLight, background: C.white, color: C.forestMid }}
-                  onFocus={(e) => (e.currentTarget.style.borderColor = C.sageMain)}
-                  onBlur={(e) => (e.currentTarget.style.borderColor = C.sageLight)}
-                />
+                {/* Custom date picker - blocks past dates, shows dd/mm/yyyy */}
+                <div className="relative">
+                  <input
+                    type="date"
+                    name="date"
+                    required
+                    min={new Date().toISOString().split("T")[0]}
+                    className="w-full px-4 py-3.5 text-sm rounded-xl border-2 focus:outline-none transition-all duration-300"
+                    style={{ borderColor: C.sageLight, background: C.white, color: C.forestMid }}
+                    onFocus={(e) => (e.currentTarget.style.borderColor = C.sageMain)}
+                    onBlur={(e) => (e.currentTarget.style.borderColor = C.sageLight)}
+                    onChange={(e) => {
+                      const val = e.currentTarget.value;
+                      const today = new Date().toISOString().split("T")[0];
+                      if (val < today) e.currentTarget.value = today;
+                    }}
+                  />
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm pointer-events-none select-none"
+                    style={{ color: C.sageMain, display: "var(--date-hint-display, none)" }}>
+                    dd/mm/yyyy
+                  </span>
+                </div>
                 <textarea rows={4} name="notes" placeholder="Ghi chú thêm về yêu cầu của bạn..."
                   className="w-full px-4 py-3.5 text-sm rounded-xl border-2 focus:outline-none transition-all duration-300 resize-none"
                   style={{ borderColor: C.sageLight, background: C.white, color: C.forest }}

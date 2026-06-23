@@ -11,26 +11,9 @@ export default function Services() {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const { collection, getDocs } = await import("firebase/firestore");
-        const { db } = await import("../../lib/firebase");
-        const snapshot = await getDocs(collection(db, "services"));
-        const data = snapshot.docs.map(doc => {
-          const raw = doc.data();
-          return {
-            slug: doc.id,
-            name: raw.title || "Dịch vụ",
-            price: raw.price || "Liên hệ",
-            emoji: "✨",
-            desc: raw.description?.substring(0, 50) + "..." || "Dịch vụ cao cấp...",
-            img: raw.coverImage || "https://images.pexels.com/photos/1056588/pexels-photo-1056588.jpeg",
-            hero: raw.coverImage || "https://images.pexels.com/photos/1056588/pexels-photo-1056588.jpeg",
-            duration: "Tuỳ chọn",
-            category: "Dịch vụ",
-            fullDesc: raw.description || "Hãy trải nghiệm dịch vụ của chúng tôi.",
-            includes: [],
-            process: []
-          } as ServiceDetail;
-        });
+        const res = await fetch("/api/services");
+        if (!res.ok) throw new Error("Failed to fetch");
+        const data = await res.json();
         setDbServices(data);
       } catch (err) {
         console.error("Failed to load services", err);
@@ -41,8 +24,7 @@ export default function Services() {
     fetchServices();
   }, []);
 
-  // Merge DB services and mock data so all old templates are kept
-  const displayServices = [...dbServices, ...SERVICES];
+  const displayServices = dbServices.length > 0 ? dbServices : SERVICES;
 
   return (
     <div style={{ background: C.bg }}>

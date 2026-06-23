@@ -134,34 +134,9 @@ export default function Portfolio() {
   useEffect(() => {
     const fetchAlbums = async () => {
       try {
-        const { collection, getDocs } = await import("firebase/firestore");
-        const { db } = await import("../../lib/firebase");
-
-        const snapshot = await getDocs(collection(db, "albums"));
-
-        let data = snapshot.docs.map(doc => {
-          const raw = doc.data();
-
-          let dbCat = raw.category || "Cá nhân";
-          if (dbCat === "CÁ NHÂN") dbCat = "Cá nhân";
-          if (dbCat === "COUPLE") dbCat = "Couple";
-          if (dbCat === "GIA ĐÌNH") dbCat = "Gia đình";
-          if (dbCat === "SỰ KIỆN") dbCat = "Sự kiện";
-
-          // Map firebase fields to Portfolio fields
-          return {
-            id: doc.id,
-            slug: doc.id, // For now use ID as slug
-            title: raw.title || "Untitled",
-            category: dbCat,
-            img: raw.coverImage || "https://images.pexels.com/photos/1056588/pexels-photo-1056588.jpeg",
-            _createdAt: raw.createdAt?.toMillis ? raw.createdAt.toMillis() : Date.now()
-          };
-        });
-
-        // Sort manually directly
-        data = data.sort((a, b) => b._createdAt - a._createdAt);
-
+        const res = await fetch("/api/portfolios");
+        if (!res.ok) throw new Error("Failed to fetch");
+        const data = await res.json();
         setDbAlbums(data);
       } catch (err) {
         console.error("Failed to load albums", err);
@@ -172,9 +147,8 @@ export default function Portfolio() {
     fetchAlbums();
   }, []);
 
-  // fallback to PORTFOLIO mock data if DB empty but loading finished
-  // actually let's merge them so it looks beautiful with both Real + Mock data!
-  const displayItems = [...dbAlbums, ...PORTFOLIO];
+  // merge them if needed, our SQLite DB contains the mock data initially
+  const displayItems = dbAlbums.length > 0 ? dbAlbums : PORTFOLIO;
 
   const categories = ["Tất cả", ...Array.from(new Set(displayItems.map((p) => p.category)))];
   const filtered = activeFilter === "Tất cả" ? displayItems : displayItems.filter((p) => p.category === activeFilter);

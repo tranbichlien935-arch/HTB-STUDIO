@@ -12,39 +12,26 @@ export default function AlbumDetail() {
 
   useEffect(() => {
     const fetchAlbumDetails = async () => {
-      // 1. Check local mock data first
-      let found = PORTFOLIO.find(p => p.slug === slug);
-      if (found) {
-        setFetchedAlbum(found);
-        setLoading(false);
-        return;
-      }
-
-      // 2. Fetch from Firebase if it's dynamic
       try {
-        const { doc, getDoc } = await import("firebase/firestore");
-        const { db } = await import("../../lib/firebase");
+        const res = await fetch("/api/portfolios");
+        if (!res.ok) throw new Error("Failed to fetch");
+        const allDb = await res.json() as AlbumItem[];
 
-        if (slug) {
-          const docRef = doc(db, "albums", slug);
-          const docSnap = await getDoc(docRef);
+        let found = allDb.find((p) => p.slug === slug);
+        if (!found) {
+          found = PORTFOLIO.find(p => p.slug === slug);
+        }
 
-          if (docSnap.exists()) {
-            const raw = docSnap.data();
-            setFetchedAlbum({
-              slug: docSnap.id,
-              title: raw.title || "Untitled",
-              category: raw.category || "CÁ NHÂN",
-              img: raw.coverImage || "https://images.pexels.com/photos/1056588/pexels-photo-1056588.jpeg",
-              hero: raw.coverImage || "https://images.pexels.com/photos/1056588/pexels-photo-1056588.jpeg",
-              concept: raw.category || "Nhiếp ảnh",
-              desc: raw.desc || "Những khoảnh khắc tuyệt vời được lưu giữ qua ống kính của HBT Studio. Cùng chiêm ngưỡng những hình ảnh chân thực và đong đầy cảm xúc mà chúng tôi mang lại.",
-              photos: raw.gallery && raw.gallery.length > 0 ? raw.gallery : [raw.coverImage, "https://images.pexels.com/photos/1056588/pexels-photo-1056588.jpeg"]
-            });
-          }
+        if (found) {
+          setFetchedAlbum({
+            ...found,
+            photos: found.photos && found.photos.length > 0 ? found.photos : [found.hero, found.img]
+          });
         }
       } catch (err) {
         console.error("Error fetching album detail", err);
+        const fb = PORTFOLIO.find(p => p.slug === slug);
+        if (fb) setFetchedAlbum(fb);
       } finally {
         setLoading(false);
       }

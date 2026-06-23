@@ -429,11 +429,20 @@ export function SectionBanner({ title, subtitle, img, align = "center" }: {
 
 export function StatNumber({ target }: { target: number }) {
   const { ref, visible } = useInView(0.3);
-  return (
-    <span ref={ref} style={{ display: "inline-block" }}>
-      <Odometer value={visible ? target : 0} format="(,ddd)" duration={2000} />
-    </span>
-  );
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (!visible) return;
+    let start = 0;
+    const duration = 1800;
+    const step = Math.ceil(target / (duration / 16));
+    const timer = setInterval(() => {
+      start = Math.min(start + step, target);
+      setCount(start);
+      if (start >= target) clearInterval(timer);
+    }, 16);
+    return () => clearInterval(timer);
+  }, [visible, target]);
+  return <span ref={ref}>{count.toLocaleString("vi-VN")}</span>;
 }
 
 export function StatCard({ target, suffix, label, delay }: { target: number; suffix: string; label: string; delay: number }) {
@@ -573,7 +582,7 @@ export function PortfolioCard({ p, onClick }: { p: AlbumItem; onClick?: () => vo
 
 export function TestimonialCard({ t }: { t: typeof TESTIMONIALS[0] }) {
   return (
-    <div className="p-8 rounded-2xl border relative overflow-hidden" style={{ borderColor: C.sageLight, background: C.white }}>
+    <div className="p-8 rounded-2xl border relative overflow-hidden flex flex-col h-full" style={{ borderColor: C.sageLight, background: C.white }}>
       <svg className="absolute top-0 right-0 pointer-events-none" width="60" height="60" viewBox="0 0 60 60" fill="none" style={{ opacity: 0.3 }}>
         <circle cx="50" cy="10" r="10" fill={C.pink} />
         <circle cx="38" cy="4" r="5" fill={C.champagne} />
@@ -582,8 +591,8 @@ export function TestimonialCard({ t }: { t: typeof TESTIMONIALS[0] }) {
       <div className="flex gap-1 mb-4">
         {Array.from({ length: t.rating }).map((_, j) => <Star key={j} size={14} fill={C.peach} color={C.peach} />)}
       </div>
-      <p className="leading-relaxed mb-6 text-sm italic" style={{ color: C.forestMid }}>"{t.text}"</p>
-      <div className="flex items-center gap-3">
+      <p className="leading-relaxed mb-6 text-sm italic flex-grow" style={{ color: C.forestMid }}>"{t.text}"</p>
+      <div className="flex items-center gap-3 mt-auto">
         <img src={t.img} alt={t.name} className="w-10 h-10 rounded-full object-cover" style={{ border: `2px solid ${C.sageLight}` }} />
         <div>
           <div className="text-sm font-semibold" style={{ color: C.forest }}>{t.name}</div>

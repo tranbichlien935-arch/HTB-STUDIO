@@ -41,33 +41,16 @@ export default function Home() {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const { collection, getDocs } = await import("firebase/firestore");
-        const { db } = await import("../../lib/firebase");
-        const snapshot = await getDocs(collection(db, "services"));
-        const data = snapshot.docs.map(doc => {
-          const raw = doc.data();
-          return {
-            slug: doc.id,
-            name: raw.title || "Dịch vụ",
-            price: raw.price || "Liên hệ",
-            emoji: "✨",
-            desc: raw.description?.substring(0, 50) + "..." || "Dịch vụ cao cấp...",
-            img: raw.coverImage || "https://images.pexels.com/photos/1056588/pexels-photo-1056588.jpeg",
-            hero: raw.coverImage || "https://images.pexels.com/photos/1056588/pexels-photo-1056588.jpeg",
-            duration: "Tuỳ chọn",
-            category: "Dịch vụ",
-            fullDesc: raw.description || "",
-            includes: [],
-            process: []
-          };
-        });
+        const res = await fetch("/api/services");
+        if (!res.ok) throw new Error("Failed to fetch");
+        const data = await res.json();
         setDbServices(data);
       } catch (err) { }
     };
     fetchServices();
   }, []);
 
-  const displayServices = [...dbServices, ...SERVICES];
+  const displayServices = dbServices.length > 0 ? dbServices : SERVICES;
 
   // auto-advance every 5s
   useEffect(() => {
@@ -351,9 +334,9 @@ export default function Home() {
               </div>
               <BranchDivider />
             </FadeUp>
-            <div className="grid md:grid-cols-3 gap-6 mt-12">
+            <div className="grid md:grid-cols-3 gap-6 mt-12 items-stretch">
               {TESTIMONIALS.map((t, i) => (
-                <FadeUp key={t.name} delay={i * 0.12}>
+                <FadeUp key={t.name} delay={i * 0.12} className="flex">
                   <TestimonialCard t={t} />
                 </FadeUp>
               ))}
