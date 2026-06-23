@@ -4,25 +4,41 @@ import { Loader2, CheckCircle2, Clock, XCircle, Trash2 } from "lucide-react";
 export default function AdminBookings() {
     const [bookings, setBookings] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
+    const [isLocalMode, setIsLocalMode] = useState(false);
 
     const fetchBookings = async () => {
         try {
             const res = await fetch("/api/admin/bookings");
             if (!res.ok) throw new Error("Failed");
             const data = await res.json();
-            // Map MS SQL columns to the UI
             const mappedData = data.map((b: any) => ({
                 id: b.MaLichDat.toString(),
                 name: b.TenKhachHang,
                 phone: b.SoDienThoai,
                 date: b.NgayDat,
-                service: "Dịch vụ đã chọn", // Simplified, as we put it into notes earlier
-                notes: b.YeuCauChuY,
+                service: b.YeuCauChuY?.split("\n")[0] || "Dịch vụ đã chọn",
+                notes: b.YeuCauChuY?.split("\n\nGhi chú: ")[1] || "",
                 status: b.TrangThai === "Đã Chốt Lịch" ? "confirmed" : b.TrangThai === "Từ Chối" ? "cancelled" : "pending"
             }));
             setBookings(mappedData);
-        } catch (error) {
-            console.error("Error fetching bookings: ", error);
+            setIsLocalMode(false);
+        } catch (_) {
+            // API không tồn tại (Vercel) → đọc từ localStorage
+            try {
+                const saved = JSON.parse(localStorage.getItem("htb_bookings") || "[]");
+                const mappedLocal = saved.map((b: any, idx: number) => ({
+                    id: `local-${idx}`,
+                    name: b.name,
+                    phone: b.phone,
+                    date: b.date,
+                    service: b.service,
+                    notes: b.notes,
+                    status: b.status || "pending",
+                    createdAt: b.createdAt,
+                }));
+                setBookings(mappedLocal);
+                setIsLocalMode(true);
+            } catch (_) { }
         } finally {
             setLoading(false);
         }
@@ -33,13 +49,24 @@ export default function AdminBookings() {
     }, []);
 
     const handleUpdateStatus = async (id: string, newStatus: string) => {
+        if (isLocalMode) {
+            // Cập nhật trạng thái trong localStorage
+            const saved = JSON.parse(localStorage.getItem("htb_bookings") || "[]");
+            const idx = parseInt(id.replace("local-", ""));
+            if (saved[idx]) {
+                saved[idx].status = newStatus;
+                localStorage.setItem("htb_bookings", JSON.stringify(saved));
+                fetchBookings();
+            }
+            return;
+        }
         try {
             await fetch(`/api/admin/bookings/${id}/status`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ status: newStatus })
             });
-            fetchBookings(); // Refresh data
+            fetchBookings();
         } catch (err) {
             console.error(err);
             alert("Lỗi khi cập nhật trạng thái!");
@@ -47,14 +74,22 @@ export default function AdminBookings() {
     };
 
     const handleDelete = async (id: string) => {
-        if (confirm("Bạn có chắc chắn muốn xóa lịch đặt này?")) {
-            try {
-                await fetch(`/api/admin/bookings/${id}`, { method: "DELETE" });
-                fetchBookings(); // Refresh data
-            } catch (err) {
-                console.error(err);
-                alert("Lỗi khi xóa!");
-            }
+        if (!confirm("Bạn có chắc chắn muốn xóa lịch đặt này?")) return;
+        if (isLocalMode) {
+            // Xoá khỏi localStorage
+            const saved = JSON.parse(localStorage.getItem("htb_bookings") || "[]");
+            const idx = parseInt(id.replace("local-", ""));
+            saved.splice(idx, 1);
+            localStorage.setItem("htb_bookings", JSON.stringify(saved));
+            fetchBookings();
+            return;
+        }
+        try {
+            await fetch(`/api/admin/bookings/${id}`, { method: "DELETE" });
+            fetchBookings();
+        } catch (err) {
+            console.error(err);
+            alert("Lỗi khi xóa!");
         }
     };
 
